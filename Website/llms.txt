@@ -1,0 +1,35 @@
+# Lighter Finance
+
+> Lighter Finance is an Australian business finance brokerage based in Sydney, NSW. We compare 60+ lenders to find the best unsecured business loans, equipment finance, working capital solutions, and more for Australian SMEs — at no upfront cost to the client.
+
+## What We Do
+
+- Search, compare, and negotiate with 60+ lenders on behalf of Australian businesses
+- Protect the client's credit score using a single soft enquiry before any application
+- Specialise in 7 industries: Hospitality, Construction, Retail, Sole Traders, Professional Services, Plumbing/Trades, and Transport/Logistics
+- Offer a range of finance products: unsecured business loans, working capital funding, inventory finance, ATO/tax debt funding, fit-out and renovation finance, equipment finance, vehicle finance, payroll funding, caravan loans, and business loan refinancing
+- Applications typically turned around within 24 hours
+- $0 upfront broker fees — we are paid by the lender on settlement
+
+## Key Facts
+
+- Location: Sydney, NSW — servicing clients Australia-wide
+- Lender panel: 60+ lenders including major banks and specialist lenders (Westpac, ANZ, NAB, Commonwealth, Macquarie, Liberty, Pepper Money, Wisr, Shift, Plenti, and 50+ more)
+- Brokers: William Parry (Director & Senior Broker), Steve, James, Toby
+- Contact: hello@lighterfinance.com.au | 0400 000 000
+- Hours: Monday–Friday, 8am–6pm AEST
+
+## Pages
+
+- /index.html — Homepage: overview of all services, lender panel, and why to use Lighter Finance
+- /about.html — About Us: company mission, team profiles, and guiding principles
+- /industries.html — Industries overview: all 7 sectors served with finance tailored to each
+- /contact.html — Contact: enquiry form, phone, email, and response time
+- /apply.html — Apply Now: 2-minute form collecting loan amount, turnover, and time in business
+- /hospitality.html — Hospitality Finance: for restaurants, cafés, bars, and food & beverage businesses
+- /construction.html — Construction Finance: for builders, contractors, and subcontractors
+- /retail.html — Retail Finance: for retail stores and e-commerce businesses
+- /sole-traders.html — Sole Trader Finance: unsecured and low-doc loans for self-employed individuals
+- /professional-services.html — Professional Services Finance: for accountants, consultants, and legal firms
+- /plumbing.html — Plumbing Finance: vehicle and equipment finance for plumbers and gas fitters
+- /transport.html — Transport Finance: truck, trailer, and fleet finance for logistics operators

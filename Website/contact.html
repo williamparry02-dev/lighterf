@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Contact Lighter Finance. Speak to a Sydney-based business finance broker for a no-obligation consultation. Response within a few hours, Mon–Fri 8am–6pm AEST." />
+  <title>Contact – Lighter Finance</title>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://lighterfinance.com.au/#organization",
+        "name": "Lighter Finance",
+        "url": "https://lighterfinance.com.au",
+        "logo": "https://lighterfinance.com.au/assets/logo.png",
+        "description": "Australian business finance brokerage comparing 60+ lenders to find the best unsecured business loans and working capital for SMEs.",
+        "address": { "@type": "PostalAddress", "addressLocality": "Sydney", "addressRegion": "NSW", "addressCountry": "AU" },
+        "telephone": "0400000000",
+        "email": "hello@lighterfinance.com.au",
+        "areaServed": { "@type": "Country", "name": "Australia" },
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "contactType": "customer service",
+          "telephone": "0400000000",
+          "email": "hello@lighterfinance.com.au",
+          "hoursAvailable": {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+            "opens": "08:00",
+            "closes": "18:00"
+          },
+          "areaServed": "AU"
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://lighterfinance.com.au/" },
+          { "@type": "ListItem", "position": 2, "name": "Contact", "item": "https://lighterfinance.com.au/contact.html" }
+        ]
+      }
+    ]
+  }
+  </script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,600;0,700&family=Roboto+Slab:wght@400;600;700&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand:        '#5BA4F5',
+            'brand-dark': '#4A93E4',
+            navy:         '#2D3547',
+            ice:          '#EEF6FF',
+            ink:          '#2D3547',
+            muted:        '#6B7280',
+            mid:          '#54595F',
+          },
+          fontFamily: {
+            sans:  ['Roboto', 'sans-serif'],
+            serif: ['Roboto Slab', 'serif'],
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+
+    .nav-link { position: relative; }
+    .nav-link::after {
+      content: ''; position: absolute; bottom: -2px; left: 0;
+      width: 0; height: 2px; background: #5BA4F5;
+      transition: width 0.22s cubic-bezier(.4,0,.2,1);
+    }
+    .nav-link:hover::after { width: 100%; }
+    .nav-link.active::after { width: 100%; }
+
+    .btn-primary { transition: background 0.2s, box-shadow 0.2s, transform 0.15s; }
+    .btn-primary:hover { background: #4A93E4; box-shadow: 0 6px 24px rgba(91,164,245,0.45); transform: translateY(-1px); }
+    .btn-primary:active { transform: translateY(0); }
+
+    .anim-btn {
+      position: relative; overflow: hidden;
+      display: inline-flex; align-items: center;
+      height: 44px; padding: 0 32px 0 20px;
+      border-radius: 6px;
+      font-family: 'Roboto', sans-serif; font-weight: 600; font-size: 0.875rem;
+      cursor: pointer; border: none; text-decoration: none; white-space: nowrap;
+    }
+    .anim-btn .anim-text { margin-right: 32px; transition: opacity 0.5s; }
+    .anim-btn:hover .anim-text { opacity: 0; }
+    .anim-btn .anim-icon {
+      position: absolute; right: 4px; top: 4px; bottom: 4px;
+      border-radius: 4px; display: grid; place-items: center;
+      width: 26%; transition: width 0.5s cubic-bezier(0.4,0,0.2,1); z-index: 10;
+    }
+    .anim-btn:hover .anim-icon { width: calc(100% - 8px); }
+    .anim-btn:active .anim-icon { transform: scale(0.95); }
+    .anim-btn:focus-visible { outline: 2px solid #5BA4F5; outline-offset: 3px; }
+    .anim-btn-primary { background: #5BA4F5; color: #fff; box-shadow: 0 4px 20px rgba(91,164,245,0.38); }
+    .anim-btn-primary:hover { background: #4A93E4; box-shadow: 0 6px 24px rgba(91,164,245,0.48); color: #fff; }
+    .anim-btn-primary .anim-icon { background: rgba(255,255,255,0.18); color: #fff; }
+
+    a:focus-visible { outline: 2px solid #5BA4F5; outline-offset: 3px; border-radius: 4px; }
+
+    .ind-wrap { position: relative; }
+    .ind-trigger {
+      display: inline-flex; align-items: center; gap: 5px;
+      font-size: 0.875rem; font-weight: 500; color: #54595F;
+      cursor: pointer; background: none; border: none; padding: 0;
+      font-family: 'Roboto', sans-serif; transition: color 0.2s;
+    }
+    .ind-trigger:hover, .ind-trigger.open { color: #2D3547; }
+    .ind-trigger svg { transition: transform 0.22s cubic-bezier(.4,0,.2,1); }
+    .ind-trigger.open svg { transform: rotate(180deg); }
+    .ind-trigger::after {
+      content: ''; position: absolute; bottom: -2px; left: 0;
+      width: 0; height: 2px; background: #5BA4F5;
+      transition: width 0.22s cubic-bezier(.4,0,.2,1);
+    }
+    .ind-trigger:hover::after, .ind-trigger.open::after { width: 100%; }
+    .ind-dropdown {
+      position: absolute; top: calc(100% + 14px); left: 50%;
+      transform: translateX(-50%); min-width: 210px;
+      background: #fff; border: 1px solid rgba(91,164,245,0.18);
+      border-radius: 12px; box-shadow: 0 8px 32px rgba(45,53,71,0.12), 0 2px 8px rgba(91,164,245,0.08);
+      padding: 8px; opacity: 0; pointer-events: none;
+      transform: translateX(-50%) translateY(-6px);
+      transition: opacity 0.2s cubic-bezier(.4,0,.2,1), transform 0.2s cubic-bezier(.4,0,.2,1);
+      z-index: 200;
+    }
+    .ind-dropdown.open { opacity: 1; pointer-events: auto; transform: translateX(-50%) translateY(0); }
+    .ind-dropdown a {
+      display: flex; align-items: center; gap: 10px; padding: 9px 14px;
+      border-radius: 8px; font-size: 0.875rem; font-weight: 500; color: #2D3547;
+      text-decoration: none; transition: background 0.15s, color 0.15s;
+    }
+    .ind-dropdown a:hover { background: #EEF6FF; color: #5BA4F5; }
+    .ind-dropdown a .ind-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: #5BA4F5; flex-shrink: 0; opacity: 0.5; transition: opacity 0.15s;
+    }
+    .ind-dropdown a:hover .ind-dot { opacity: 1; }
+
+    .grain {
+      position: absolute; inset: 0; pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
+      opacity: 0.4;
+    }
+
+    /* Form */
+    .form-label {
+      display: block; font-size: 0.8125rem; font-weight: 600;
+      color: #2D3547; margin-bottom: 6px;
+    }
+    .form-input {
+      width: 100%; padding: 11px 14px;
+      border: 1.5px solid #E5EDF8;
+      border-radius: 8px;
+      font-family: 'Roboto', sans-serif; font-size: 0.9375rem; color: #2D3547;
+      background: #fff;
+      transition: border-color 0.18s, box-shadow 0.18s;
+      outline: none;
+    }
+    .form-input:focus {
+      border-color: #5BA4F5;
+      box-shadow: 0 0 0 3px rgba(91,164,245,0.15);
+    }
+    .form-input::placeholder { color: #9CA3AF; }
+    select.form-input { cursor: pointer; }
+    textarea.form-input { resize: vertical; min-height: 120px; }
+
+    .form-submit {
+      width: 100%;
+      justify-content: flex-start;
+    }
+    .form-submit .anim-text { flex: 1; }
+
+    /* Contact info items */
+    .contact-item {
+      display: flex; align-items: flex-start; gap: 16px;
+      padding: 20px 0;
+      border-bottom: 1px solid #F0F4FA;
+    }
+    .contact-item:last-child { border-bottom: none; }
+    .contact-icon {
+      width: 42px; height: 42px; border-radius: 10px;
+      background: #EEF6FF;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .contact-icon svg { color: #5BA4F5; }
+  
+    /* ── Sliding pill nav ── */
+    .nav-pill-wrap{position:relative;display:flex;align-items:center;list-style:none;margin:0;padding:4px;border-radius:999px;border:2px solid #5BA4F5;background:#fff;isolation:isolate;}
+    .nav-cursor{position:absolute;top:4px;height:calc(100% - 8px);border-radius:999px;background:#5BA4F5;z-index:0;pointer-events:none;opacity:0;transition:left 0.22s cubic-bezier(0.4,0,0.2,1),width 0.22s cubic-bezier(0.4,0,0.2,1),opacity 0.18s;}
+    .nav-pill-item{position:relative;z-index:1;list-style:none;}
+    .nav-pill-link{display:flex;align-items:center;gap:5px;padding:8px 14px;font-size:0.875rem;font-weight:500;color:#2D3547;white-space:nowrap;text-decoration:none;cursor:pointer;font-family:'Roboto',sans-serif;}
+    .nav-pill-item .ind-trigger{padding:8px 14px;color:#2D3547;font-size:0.875rem;font-weight:500;}
+    .nav-pill-item .ind-trigger::after{display:none !important;}
+    .nav-pill-item .ind-trigger:hover,.nav-pill-item .ind-trigger.open{color:#2D3547;}
+  </style>
+</head>
+<body class="bg-white text-ink font-sans">
+
+  <!-- ─── NAVIGATION ─────────────────────────────────────────────────────── -->
+  <header class="sticky top-0 z-50" style="background: rgba(255,255,255,0.8); backdrop-filter: blur(12px); box-shadow: 0 1px 0 rgba(0,0,0,0.09);">
+    <div class="max-w-6xl mx-auto px-6 flex items-center justify-between gap-6" style="height: 60px;">
+      <a href="index.html" class="shrink-0" style="height: 60px; overflow: hidden; display: flex; align-items: center;">
+        <img src="assets/lighter_finance_logo_true_transparent.png" alt="Lighter Finance" style="height: 220px; width: auto;" />
+      </a>
+            <nav class="hidden md:flex items-center">
+        <ul class="nav-pill-wrap" id="nav-pill">
+          <div class="nav-cursor" id="nav-cursor"></div>
+          <li class="nav-pill-item"><a href="index.html" class="nav-pill-link">Home</a></li>
+          <li class="nav-pill-item"><a href="about.html" class="nav-pill-link">About Us</a></li>
+          <li class="nav-pill-item ind-wrap">
+            <button class="ind-trigger" id="ind-trigger" aria-haspopup="true" aria-expanded="false">
+              Industries
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4l4 4 4-4"/></svg>
+            </button>
+            <div class="ind-dropdown" id="ind-dropdown" role="menu">
+              <a href="hospitality.html" role="menuitem"><span class="ind-dot"></span>Hospitality</a>
+              <a href="construction.html" role="menuitem"><span class="ind-dot"></span>Construction</a>
+              <a href="retail.html" role="menuitem"><span class="ind-dot"></span>Retail</a>
+              <a href="sole-traders.html" role="menuitem"><span class="ind-dot"></span>Sole Traders</a>
+              <a href="professional-services.html" role="menuitem"><span class="ind-dot"></span>Professional Services</a>
+              <a href="plumbing.html" role="menuitem"><span class="ind-dot"></span>Plumbing</a>
+              <a href="transport.html" role="menuitem"><span class="ind-dot"></span>Transport</a>
+            </div>
+          </li>
+          <li class="nav-pill-item ind-wrap">
+            <button class="ind-trigger" id="broker-trigger" aria-haspopup="true" aria-expanded="false">
+              Meet Your Brokers
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4l4 4 4-4"/></svg>
+            </button>
+            <div class="ind-dropdown" id="broker-dropdown" role="menu">
+              <a href="about.html#team" role="menuitem"><span class="ind-dot"></span>William</a>
+              <a href="about.html#team" role="menuitem"><span class="ind-dot"></span>Steve</a>
+              <a href="about.html#team" role="menuitem"><span class="ind-dot"></span>James</a>
+              <a href="about.html#team" role="menuitem"><span class="ind-dot"></span>Toby</a>
+            </div>
+          </li>
+          <li class="nav-pill-item"><a href="contact.html" class="nav-pill-link">Contact</a></li>
+        </ul>
+      </nav>
+      <a href="apply.html"
+         class="btn-primary bg-brand text-white text-sm font-semibold px-5 py-2 rounded shrink-0"
+         style="box-shadow: 0 2px 12px rgba(91,164,245,0.35);">Get Started</a>
+    </div>
+  </header>
+
+  <!-- ─── PAGE HERO ─────────────────────────────────────────────────────── -->
+  <section class="relative overflow-hidden bg-ice" style="padding: 80px 24px 80px;">
+    <div class="grain"></div>
+    <div class="absolute inset-0 pointer-events-none"
+         style="background: radial-gradient(ellipse 60% 70% at 70% 50%, rgba(91,164,245,0.11) 0%, transparent 70%),
+                            radial-gradient(ellipse 40% 50% at 10% 60%, rgba(74,147,228,0.07) 0%, transparent 70%);"></div>
+    <div class="max-w-6xl mx-auto" style="position: relative; z-index: 1;">
+      <p class="text-brand text-sm font-semibold uppercase tracking-widest mb-4">Contact</p>
+      <h1 class="font-serif font-bold text-ink mb-6" style="font-size: clamp(2rem, 4.5vw, 3.2rem); letter-spacing: -0.03em; max-width: 600px; line-height: 1.15;">
+        Let's find the right finance for your business
+      </h1>
+      <p class="text-muted text-base" style="max-width: 480px; line-height: 1.75;">
+        Fill in the form and one of our brokers will be in touch within a few hours — no obligation, no hard sell, just straightforward advice.
+      </p>
+    </div>
+  </section>
+
+  <!-- ─── CONTACT LAYOUT ───────────────────────────────────────────────── -->
+  <section class="bg-white py-16 px-6">
+    <div class="max-w-6xl mx-auto" style="display: grid; grid-template-columns: 1fr 420px; gap: 80px; align-items: start;">
+
+      <!-- Form -->
+      <div>
+        <h2 class="font-serif font-bold text-ink mb-8" style="font-size: 1.5rem; letter-spacing: -0.02em;">Send us a message</h2>
+        <form style="display: flex; flex-direction: column; gap: 20px;">
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+            <div>
+              <label class="form-label" for="first-name">First Name</label>
+              <input class="form-input" type="text" id="first-name" placeholder="John" />
+            </div>
+            <div>
+              <label class="form-label" for="last-name">Last Name</label>
+              <input class="form-input" type="text" id="last-name" placeholder="Smith" />
+            </div>
+          </div>
+
+          <div>
+            <label class="form-label" for="email">Email Address</label>
+            <input class="form-input" type="email" id="email" placeholder="you@yourbusiness.com.au" />
+          </div>
+
+          <div>
+            <label class="form-label" for="phone">Phone Number</label>
+            <input class="form-input" type="tel" id="phone" placeholder="04XX XXX XXX" />
+          </div>
+
+          <div>
+            <label class="form-label" for="loan-amount">Approximate Loan Amount</label>
+            <input class="form-input" type="text" id="loan-amount" placeholder="e.g. $75,000" />
+          </div>
+
+          <div>
+            <label class="form-label" for="industry">Industry</label>
+            <input class="form-input" type="text" id="industry" placeholder="e.g. Hospitality" />
+          </div>
+
+          <div>
+            <label class="form-label" for="message">Tell us about your situation <span style="color:#9CA3AF; font-weight:400;">(optional)</span></label>
+            <textarea class="form-input" id="message" placeholder="What are you looking to fund, and is there anything we should know upfront?"></textarea>
+          </div>
+
+          <button type="submit" class="anim-btn anim-btn-primary form-submit">
+            <span class="anim-text">Send Enquiry</span>
+            <i class="anim-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+            </i>
+          </button>
+
+          <p class="text-muted text-xs" style="line-height: 1.65;">
+            By submitting this form you agree to our <a href="#" style="color:#5BA4F5;">Privacy Policy</a>. We will never share your information with third parties without your consent.
+          </p>
+
+        </form>
+      </div>
+
+      <!-- Contact Info -->
+      <div>
+        <div style="background: #F5F7FA; border-radius: 16px; padding: 32px 28px; margin-bottom: 24px;">
+          <h3 class="font-serif font-bold text-ink mb-6" style="font-size: 1.15rem; letter-spacing: -0.01em;">Contact details</h3>
+
+          <div class="contact-item">
+            <div class="contact-icon">
+              <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+              </svg>
+            </div>
+            <div>
+              <div style="font-size:0.75rem; font-weight:600; text-transform:uppercase; letter-spacing:0.08em; color:#5BA4F5; margin-bottom:4px;">Phone</div>
+              <a href="tel:+61478022067" style="font-size:0.9375rem; font-weight:600; color:#2D3547; text-decoration:none;">0478 022 067</a>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon">
+              <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+              </svg>
+            </div>
+            <div>
+              <div style="font-size:0.75rem; font-weight:600; text-transform:uppercase; letter-spacing:0.08em; color:#5BA4F5; margin-bottom:4px;">Email</div>
+              <a href="mailto:enquiries@lighterfinance.com.au" style="font-size:0.9375rem; font-weight:600; color:#2D3547; text-decoration:none;">enquiries@lighterfinance.com.au</a>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon">
+              <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+            </div>
+            <div>
+              <div style="font-size:0.75rem; font-weight:600; text-transform:uppercase; letter-spacing:0.08em; color:#5BA4F5; margin-bottom:4px;">Response Time</div>
+              <p style="font-size:0.9375rem; font-weight:600; color:#2D3547;">Within a few hours</p>
+              <p style="font-size:0.8125rem; color:#6B7280; margin-top:2px;">Mon – Fri, 8am – 6pm AEST</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Lenders note -->
+        <div style="background: #EEF6FF; border-radius: 12px; padding: 20px 22px; border: 1px solid rgba(91,164,245,0.2);">
+          <p style="font-size:0.8125rem; color:#2D3547; line-height:1.7;">
+            <strong style="color:#5BA4F5;">60+ lenders on our panel.</strong> We do a single soft enquiry to explore your options without affecting your credit score.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ─── FOOTER ─────────────────────────────────────────────────────────── -->
+  <footer style="background-color: #2D3547;" class="py-14 px-6">
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-10">
+      <div>
+        <div class="mb-3">
+          <div style="background: white; border-radius: 10px; padding: 10px 18px; display: inline-block;">
+            <img src="assets/logo.png" alt="Lighter Finance" style="height: 36px; width: auto; display: block;" />
+          </div>
+        </div>
+        <p class="text-gray-400 text-xs leading-relaxed max-w-xs mt-3" style="line-height: 1.7;">
+          For businesses wanting a lighter path to success.
+        </p>
+      </div>
+      <nav class="flex flex-wrap gap-x-8 gap-y-3">
+        <a href="about.html" class="text-gray-400 hover:text-white text-sm transition-colors duration-200">About Us</a>
+        <a href="industries.html" class="text-gray-400 hover:text-white text-sm transition-colors duration-200">Industries</a>
+        <a href="about.html#team" class="text-gray-400 hover:text-white text-sm transition-colors duration-200">Meet Your Brokers</a>
+        <a href="apply.html" class="text-gray-400 hover:text-white text-sm transition-colors duration-200">Contact</a>
+        <a href="#" class="text-gray-400 hover:text-white text-sm transition-colors duration-200">Privacy Policy</a>
+        
+      </nav>
+    </div>
+    <div class="max-w-6xl mx-auto mt-10 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4"
+         style="border-top: 1px solid rgba(255,255,255,0.08);">
+      <p class="text-gray-500 text-xs">© 2026 Lighter Finance Pty Ltd. All rights reserved.</p>
+      <p class="text-gray-500 text-xs">Australian Credit Licence #000000</p>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      function initDropdown(triggerId, dropdownId) {
+        var trigger = document.getElementById(triggerId);
+        var dropdown = document.getElementById(dropdownId);
+        if (!trigger || !dropdown) return;
+        function open() { trigger.classList.add('open'); dropdown.classList.add('open'); trigger.setAttribute('aria-expanded', 'true'); }
+        function close() { trigger.classList.remove('open'); dropdown.classList.remove('open'); trigger.setAttribute('aria-expanded', 'false'); }
+        trigger.addEventListener('click', function (e) { e.stopPropagation(); dropdown.classList.contains('open') ? close() : open(); });
+        document.addEventListener('click', function (e) { if (!trigger.contains(e.target) && !dropdown.contains(e.target)) close(); });
+        document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
+      }
+      initDropdown('ind-trigger', 'ind-dropdown');
+      initDropdown('broker-trigger', 'broker-dropdown');
+    })();
+  </script>
+
+  <script>(function(){var pill=document.getElementById('nav-pill');var cursor=document.getElementById('nav-cursor');if(!pill||!cursor)return;var items=Array.from(pill.querySelectorAll('.nav-pill-item'));items.forEach(function(item){item.addEventListener('mouseenter',function(){var pr=pill.getBoundingClientRect();var ir=item.getBoundingClientRect();cursor.style.left=(ir.left-pr.left-2)+'px';cursor.style.width=ir.width+'px';cursor.style.opacity='1';});});pill.addEventListener('mouseleave',function(){cursor.style.opacity='0';});})();</script>
+</body>
+</html>
