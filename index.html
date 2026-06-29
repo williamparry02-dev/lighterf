@@ -1,0 +1,1181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Lighter Finance is an Australian business finance brokerage comparing 60+ lenders to find the best unsecured business loans, equipment finance, and working capital for your business." />
+  <title>Lighter Finance – Finance, Made Lighter</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,600;0,700&family=Roboto+Slab:wght@400;600;700&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand:        '#5BA4F5',
+            'brand-dark': '#4A93E4',
+            navy:         '#2D3547',
+            ice:          '#EEF6FF',
+            ink:          '#2D3547',
+            muted:        '#6B7280',
+            mid:          '#54595F',
+          },
+          fontFamily: {
+            sans:  ['Roboto', 'sans-serif'],
+            serif: ['Roboto Slab', 'serif'],
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+
+    /* Nav underline hover */
+    .nav-link { position: relative; }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -2px; left: 0;
+      width: 0; height: 2px;
+      background: #5BA4F5;
+      transition: width 0.22s cubic-bezier(.4,0,.2,1);
+    }
+    .nav-link:hover::after { width: 100%; }
+
+    /* Service card hover */
+    .svc-card { border-radius: 10px; overflow: hidden; cursor: pointer; }
+    .svc-card img { transition: transform 0.35s cubic-bezier(.4,0,.2,1); }
+    .svc-card:hover img { transform: scale(1.06); }
+    .svc-overlay { transition: opacity 0.3s; }
+    .svc-card:hover .svc-overlay { opacity: 0.9; }
+
+    /* Buttons */
+    .btn-primary { transition: background 0.2s, box-shadow 0.2s, transform 0.15s; }
+    .btn-primary:hover {
+      background: #4A93E4;
+      box-shadow: 0 6px 24px rgba(91,164,245,0.45);
+      transform: translateY(-1px);
+    }
+    .btn-primary:active { transform: translateY(0); }
+
+    /* Animated CTA buttons */
+    .anim-btn {
+      position: relative;
+      overflow: hidden;
+      display: inline-flex;
+      align-items: center;
+      height: 44px;
+      padding: 0 32px 0 20px;
+      border-radius: 6px;
+      font-family: 'Roboto', sans-serif;
+      font-weight: 600;
+      font-size: 0.875rem;
+      cursor: pointer;
+      border: none;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .anim-btn .anim-text {
+      margin-right: 32px;
+      transition: opacity 0.5s;
+    }
+    .anim-btn:hover .anim-text { opacity: 0; }
+    .anim-btn .anim-icon {
+      position: absolute;
+      right: 4px;
+      top: 4px;
+      bottom: 4px;
+      border-radius: 4px;
+      display: grid;
+      place-items: center;
+      width: 26%;
+      transition: width 0.5s cubic-bezier(0.4,0,0.2,1);
+      z-index: 10;
+    }
+    .anim-btn:hover .anim-icon { width: calc(100% - 8px); }
+    .anim-btn:active .anim-icon { transform: scale(0.95); }
+    .anim-btn:focus-visible { outline: 2px solid #5BA4F5; outline-offset: 3px; }
+
+    /* Primary variant */
+    .anim-btn-primary { background: #5BA4F5; color: #fff; box-shadow: 0 4px 20px rgba(91,164,245,0.38); }
+    .anim-btn-primary:hover { background: #4A93E4; box-shadow: 0 6px 24px rgba(91,164,245,0.48); color: #fff; }
+    .anim-btn-primary .anim-icon { background: rgba(255,255,255,0.18); color: #fff; }
+
+    /* Outline variant */
+    .anim-btn-outline { background: transparent; color: #5BA4F5; border: 2px solid #5BA4F5; padding: 0 32px 0 18px; }
+    .anim-btn-outline:hover { background: rgba(91,164,245,0.06); color: #5BA4F5; }
+    .anim-btn-outline .anim-icon { background: rgba(91,164,245,0.15); color: #5BA4F5; }
+
+    a:focus-visible { outline: 2px solid #5BA4F5; outline-offset: 3px; border-radius: 4px; }
+
+    .stars { color: #5BA4F5; letter-spacing: 2px; }
+
+    .diff-item { border-left: 3px solid #5BA4F5; padding-left: 20px; }
+
+    /* Testimonial cards */
+    .t-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 16px;
+      border: 1px solid rgba(91,164,245,0.18);
+      background: #fff;
+      padding: 28px 28px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      box-shadow: 0 1px 4px rgba(45,53,71,0.05);
+      transition: box-shadow 0.25s;
+    }
+    .t-card:hover { box-shadow: 0 8px 32px rgba(45,53,71,0.10); }
+    .t-quote {
+      position: absolute;
+      right: 20px;
+      top: 12px;
+      font-family: 'Roboto Slab', serif;
+      font-size: 80px;
+      line-height: 1;
+      color: rgba(91,164,245,0.13);
+      user-select: none;
+    }
+    .t-stars { display: flex; gap: 3px; }
+    .t-text { color: #6B7280; font-size: 0.9375rem; line-height: 1.75; flex: 1; }
+    .t-author { display: flex; align-items: center; gap: 14px; margin-top: 4px; }
+    .t-avatar {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      object-fit: cover;
+      flex-shrink: 0;
+      border: 2px solid #EEF6FF;
+    }
+    .t-name { font-weight: 600; font-size: 0.9375rem; color: #2D3547; }
+    .t-role { font-size: 0.8125rem; color: #6B7280; margin-top: 1px; }
+    .t-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    @media (max-width: 900px) { .t-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 560px) { .t-grid { grid-template-columns: 1fr; } }
+
+    /* Industries dropdown */
+    .ind-wrap { position: relative; }
+    .ind-trigger {
+      display: inline-flex; align-items: center; gap: 5px;
+      font-size: 0.875rem; font-weight: 500; color: #54595F;
+      cursor: pointer; background: none; border: none; padding: 0;
+      font-family: 'Roboto', sans-serif;
+      transition: color 0.2s;
+    }
+    .ind-trigger:hover, .ind-trigger.open { color: #2D3547; }
+    .ind-trigger svg { transition: transform 0.22s cubic-bezier(.4,0,.2,1); }
+    .ind-trigger.open svg { transform: rotate(180deg); }
+    .ind-trigger::after {
+      content: '';
+      position: absolute;
+      bottom: -2px; left: 0;
+      width: 0; height: 2px;
+      background: #5BA4F5;
+      transition: width 0.22s cubic-bezier(.4,0,.2,1);
+    }
+    .ind-trigger:hover::after, .ind-trigger.open::after { width: 100%; }
+    .ind-dropdown {
+      position: absolute;
+      top: calc(100% + 14px);
+      left: 50%;
+      transform: translateX(-50%);
+      min-width: 210px;
+      background: #fff;
+      border: 1px solid rgba(91,164,245,0.18);
+      border-radius: 12px;
+      box-shadow: 0 8px 32px rgba(45,53,71,0.12), 0 2px 8px rgba(91,164,245,0.08);
+      padding: 8px;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateX(-50%) translateY(-6px);
+      transition: opacity 0.2s cubic-bezier(.4,0,.2,1), transform 0.2s cubic-bezier(.4,0,.2,1);
+      z-index: 200;
+    }
+    .ind-dropdown.open {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateX(-50%) translateY(0);
+    }
+    .ind-dropdown a {
+      display: flex; align-items: center; gap: 10px;
+      padding: 9px 14px;
+      border-radius: 8px;
+      font-size: 0.875rem; font-weight: 500; color: #2D3547;
+      text-decoration: none;
+      transition: background 0.15s, color 0.15s;
+    }
+    .ind-dropdown a:hover { background: #EEF6FF; color: #5BA4F5; }
+    .ind-dropdown a .ind-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: #5BA4F5; flex-shrink: 0; opacity: 0.5;
+      transition: opacity 0.15s;
+    }
+    .ind-dropdown a:hover .ind-dot { opacity: 1; }
+
+    /* Industry carousel */
+    .ic-card {
+      position: relative; border-radius: 12px; overflow: hidden;
+      height: 260px; box-shadow: 0 2px 16px rgba(45,53,71,0.10);
+      display: block; text-decoration: none; cursor: pointer;
+    }
+    .ic-card img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform 0.38s cubic-bezier(.4,0,.2,1);
+      display: block;
+    }
+    .ic-card:hover img { transform: scale(1.06); }
+    .ic-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(45,53,71,0.72) 0%, rgba(45,53,71,0.1) 55%, transparent 100%);
+      pointer-events: none;
+    }
+    .ic-label {
+      position: absolute; bottom: 16px; left: 18px;
+      color: #fff; font-weight: 700; font-size: 1rem;
+      font-family: 'Roboto Slab', serif; letter-spacing: -0.01em;
+      text-shadow: 0 1px 4px rgba(0,0,0,0.3);
+    }
+    .ic-btn {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      width: 42px; height: 42px; border-radius: 50%;
+      background: #fff; border: 1.5px solid rgba(91,164,245,0.25);
+      box-shadow: 0 2px 12px rgba(45,53,71,0.12);
+      display: grid; place-items: center; cursor: pointer;
+      transition: background 0.18s, box-shadow 0.18s, color 0.18s;
+      z-index: 10; color: #5BA4F5; font-size: 1.1rem;
+    }
+    .ic-btn:hover { background: #5BA4F5; color: #fff; box-shadow: 0 4px 20px rgba(91,164,245,0.38); }
+    .ic-btn:disabled { opacity: 0.35; cursor: default; pointer-events: none; }
+    .ic-btn-prev { left: -21px; }
+    .ic-btn-next { right: -21px; }
+
+    /* Grain texture overlay */
+    .grain {
+      position: absolute; inset: 0; pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
+      opacity: 0.4;
+    }
+
+    /* Phone mockups */
+    .phone-shell {
+      border-radius: 22px;
+      overflow: hidden;
+      background: #fff;
+      border: 2.5px solid #cfe0f7;
+      box-shadow: 0 20px 50px rgba(45,53,71,0.2);
+      position: absolute;
+    }
+    .phone-notch {
+      background: #2D3547;
+      height: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .phone-notch::after {
+      content: '';
+      width: 30px; height: 5px;
+      background: #5BA4F5;
+      border-radius: 3px;
+      opacity: 0.5;
+    }
+    .phone-shell img {
+      width: 100%;
+      height: calc(100% - 22px);
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Feature strip icons */
+    .feat-icon {
+      width: 48px; height: 48px;
+      border-radius: 12px;
+      background: #EEF6FF;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 14px;
+    }
+    .feat-icon svg { color: #5BA4F5; }
+    .feat-card {
+      transition: transform 0.25s, box-shadow 0.25s;
+      box-shadow: 0 4px 20px rgba(91,164,245,0.12);
+    }
+    .feat-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 32px rgba(91,164,245,0.3);
+    }
+
+    /* Cycling hero word */
+    .hero-word-wrap {
+      display: inline-block;
+      overflow: hidden;
+    }
+    #cycling-word {
+      display: inline-block;
+      color: #5BA4F5;
+      transform: translateY(0);
+      opacity: 1;
+      transition: transform 0.45s cubic-bezier(0.4,0,0.2,1), opacity 0.35s;
+      will-change: transform, opacity;
+    }
+
+    /* Lender logo hover */
+    .lender-name {
+      opacity: 0.55;
+      transition: opacity 0.2s;
+      font-family: 'Roboto Slab', serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: #2D3547;
+    }
+    .lender-name:hover { opacity: 1; }
+
+    /* Loan Calculator Card */
+    .loan-calc-card {
+      background: #fff;
+      border: 1px solid rgba(91,164,245,0.18);
+      border-radius: 20px;
+      padding: 36px 32px 32px;
+      box-shadow: 0 4px 24px rgba(45,53,71,0.07), 0 16px 48px rgba(91,164,245,0.11);
+      width: 360px;
+      flex-shrink: 0;
+    }
+    .calc-eyebrow {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #5BA4F5;
+      margin-bottom: 8px;
+    }
+    .calc-amount-display {
+      font-family: 'Roboto Slab', serif;
+      font-size: 2.75rem;
+      font-weight: 700;
+      color: #2D3547;
+      letter-spacing: -0.03em;
+      line-height: 1;
+      margin-bottom: 28px;
+    }
+    .calc-slider-wrap { margin-bottom: 10px; }
+    .loan-slider {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 100%;
+      height: 5px;
+      border-radius: 3px;
+      outline: none;
+      cursor: pointer;
+      background: linear-gradient(to right, #5BA4F5 var(--fill, 13.3%), #E5EDF8 var(--fill, 13.3%));
+    }
+    .loan-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: #5BA4F5;
+      border: 3px solid #fff;
+      box-shadow: 0 2px 8px rgba(91,164,245,0.45);
+      cursor: pointer;
+      transition: transform 0.15s cubic-bezier(.4,0,.2,1), box-shadow 0.15s;
+    }
+    .loan-slider::-webkit-slider-thumb:hover {
+      transform: scale(1.18);
+      box-shadow: 0 4px 16px rgba(91,164,245,0.55);
+    }
+    .loan-slider::-moz-range-thumb {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: #5BA4F5;
+      border: 3px solid #fff;
+      box-shadow: 0 2px 8px rgba(91,164,245,0.45);
+      cursor: pointer;
+    }
+    .calc-range-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.75rem;
+      color: #9CA3AF;
+      font-weight: 500;
+      margin-bottom: 28px;
+    }
+    .calc-divider {
+      border: none;
+      border-top: 1px solid #F0F4FA;
+      margin-bottom: 24px;
+    }
+    .calc-btn-wrap .anim-btn {
+      width: 100%;
+      justify-content: flex-start;
+    }
+    .calc-btn-wrap .anim-btn .anim-text { flex: 1; }
+  
+    /* ── Sliding pill nav ── */
+    .nav-pill-wrap{position:relative;display:flex;align-items:center;list-style:none;margin:0;padding:4px;border-radius:999px;border:2px solid #5BA4F5;background:#fff;isolation:isolate;}
+    .nav-cursor{position:absolute;top:4px;height:calc(100% - 8px);border-radius:999px;background:#5BA4F5;z-index:0;pointer-events:none;opacity:0;transition:left 0.22s cubic-bezier(0.4,0,0.2,1),width 0.22s cubic-bezier(0.4,0,0.2,1),opacity 0.18s;}
+    .nav-pill-item{position:relative;z-index:1;list-style:none;}
+    .nav-pill-link{display:flex;align-items:center;gap:5px;padding:8px 14px;font-size:0.875rem;font-weight:500;color:#2D3547;white-space:nowrap;text-decoration:none;cursor:pointer;font-family:'Roboto',sans-serif;}
+    .nav-pill-item .ind-trigger{padding:8px 14px;color:#2D3547;font-size:0.875rem;font-weight:500;}
+    .nav-pill-item .ind-trigger::after{display:none !important;}
+    .nav-pill-item .ind-trigger:hover,.nav-pill-item .ind-trigger.open{color:#2D3547;}
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://lighterfinance.com.au/#organization",
+        "name": "Lighter Finance",
+        "url": "https://lighterfinance.com.au",
+        "logo": "https://lighterfinance.com.au/assets/logo.png",
+        "description": "Australian business finance brokerage comparing 60+ lenders to find the best unsecured business loans and working capital for SMEs.",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Sydney",
+          "addressRegion": "NSW",
+          "addressCountry": "AU"
+        },
+        "telephone": "0400000000",
+        "email": "hello@lighterfinance.com.au",
+        "areaServed": { "@type": "Country", "name": "Australia" },
+        "knowsAbout": ["Business Finance", "Unsecured Business Loans", "Equipment Finance", "Working Capital Loans", "Vehicle Finance", "ATO Tax Debt Finance", "Inventory Finance", "Payroll Finance"]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://lighterfinance.com.au/#website",
+        "url": "https://lighterfinance.com.au",
+        "name": "Lighter Finance",
+        "publisher": { "@id": "https://lighterfinance.com.au/#organization" }
+      }
+    ]
+  }
+  </script>
+
+  <!-- ── React + framer-motion via ESM importmap (no build step) ── -->
+  <script type="importmap">
+  {
+    "imports": {
+      "react":             "https://esm.sh/react@18.3.1",
+      "react/jsx-runtime": "https://esm.sh/react@18.3.1/jsx-runtime",
+      "react-dom/client":  "https://esm.sh/react-dom@18.3.1/client",
+      "framer-motion":     "https://esm.sh/framer-motion@11.2.0"
+    }
+  }
+  </script>
+</head>
+<body class="bg-white text-ink font-sans">
+
+  <!-- ─── NAVIGATION ─────────────────────────────────────────────────────── -->
+  <header class="sticky top-0 z-50" style="background: rgba(255,255,255,0.8); box-shadow: 0 1px 0 rgba(0,0,0,0.09);">
+    <div class="max-w-6xl mx-auto px-6 flex items-center justify-between gap-6" style="height: 60px;">
+
+      <!-- Render logo large; overflow:hidden crops to the centered content strip -->
+      <a href="#" class="shrink-0" style="height: 60px; overflow: hidden; display: flex; align-items: center;">
+        <img src="assets/lighter_finance_logo_true_transparent.png" alt="Lighter Finance" style="height: 220px; width: auto;" />
+      </a>
+
+            <nav class="hidden md:flex items-center">
+        <ul class="nav-pill-wrap" id="nav-pill">
+          <div class="nav-cursor" id="nav-cursor"></div>
+          <li class="nav-pill-item"><a href="index.html" class="nav-pill-link">Home</a></li>
+          <li class="nav-pill-item"><a href="about.html" class="nav-pill-link">About Us</a></li>
+          <li class="nav-pill-item ind-wrap">
+            <button class="ind-trigger" id="ind-trigger" aria-haspopup="true" aria-expanded="false">
+              Industries
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4l4 4 4-4"/></svg>
+            </button>
+            <div class="ind-dropdown" id="ind-dropdown" role="menu">
+              <a href="hospitality.html" role="menuitem"><span class="ind-dot"></span>Hospitality</a>
+              <a href="construction.html" role="menuitem"><span class="ind-dot"></span>Construction</a>
+              <a href="retail.html" role="menuitem"><span class="ind-dot"></span>Retail</a>
+              <a href="sole-traders.html" role="menuitem"><span class="ind-dot"></span>Sole Traders</a>
+              <a href="professional-services.html" role="menuitem"><span class="ind-dot"></span>Professional Services</a>
+              <a href="plumbing.html" role="menuitem"><span class="ind-dot"></span>Plumbing</a>
+              <a href="transport.html" role="menuitem"><span class="ind-dot"></span>Transport</a>
+            </div>
+          </li>
+          <li class="nav-pill-item ind-wrap">
+            <button class="ind-trigger" id="broker-trigger" aria-haspopup="true" aria-expanded="false">
+              Meet Your Brokers
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4l4 4 4-4"/></svg>
+            </button>
+            <div class="ind-dropdown" id="broker-dropdown" role="menu">
+              <a href="about.html#team" role="menuitem"><span class="ind-dot"></span>William</a>
+              <a href="about.html#team" role="menuitem"><span class="ind-dot"></span>Steve</a>
+              <a href="about.html#team" role="menuitem"><span class="ind-dot"></span>James</a>
+              <a href="about.html#team" role="menuitem"><span class="ind-dot"></span>Toby</a>
+            </div>
+          </li>
+          <li class="nav-pill-item"><a href="contact.html" class="nav-pill-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <a href="apply.html"
+         class="btn-primary bg-brand text-white text-sm font-semibold px-5 py-2 rounded shrink-0"
+         style="box-shadow: 0 2px 12px rgba(91,164,245,0.35);">Get Started</a>
+    </div>
+  </header>
+
+  <!-- ─── HERO ──────────────────────────────────────────────────────────── -->
+  <section class="relative" style="padding: 20px 20px 32px;">
+    <div style="background: #EEF6FF; border-radius: 28px; overflow: hidden; position: relative; border: 2px solid #5BA4F5;">
+      <div class="grain"></div>
+      <div style="position: absolute; inset: 0; pointer-events: none;
+                  background: radial-gradient(ellipse 65% 55% at 80% 35%, rgba(91,164,245,0.13) 0%, transparent 70%),
+                              radial-gradient(ellipse 45% 45% at 15% 65%, rgba(74,147,228,0.08) 0%, transparent 70%);"></div>
+      <!-- Floating SVG paths background -->
+      <div id="floating-paths-root" style="position:absolute;inset:0;pointer-events:none;overflow:hidden;"></div>
+
+      <div style="display: flex; align-items: stretch; position: relative; z-index: 1; min-height: 520px;">
+
+        <!-- Left: hero text -->
+        <div style="flex: 1; min-width: 280px; padding: 72px 56px 72px 56px; display: flex; flex-direction: column; justify-content: center;">
+          <p style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #5BA4F5; margin-bottom: 16px;">Australian Business Finance Brokers</p>
+          <h1 class="font-serif font-bold text-ink leading-tight mb-5"
+              style="font-size: clamp(2.4rem, 5.5vw, 4rem); letter-spacing: -0.03em; display: flex; align-items: baseline; gap: 0.3em; flex-wrap: nowrap;">
+            <span>Lighter</span><span class="hero-word-wrap"><span id="cycling-word">Finance</span></span>
+          </h1>
+          <ul class="text-muted text-base mb-8" style="max-width: 440px; line-height: 1.75; list-style: none; padding: 0; margin: 0 0 2rem 0;">
+            <li style="display:flex;align-items:center;gap:10px;margin-bottom:8px;font-weight:700;"><span style="width:8px;height:8px;border-radius:50%;background:#5BA4F5;flex-shrink:0;"></span>Secure your business up to $300,000 unsecured</li>
+            <li style="display:flex;align-items:center;gap:10px;margin-bottom:8px;font-weight:700;"><span style="width:8px;height:8px;border-radius:50%;background:#5BA4F5;flex-shrink:0;"></span>Same day funding</li>
+            <li style="display:flex;align-items:center;gap:10px;margin-bottom:8px;font-weight:700;"><span style="width:8px;height:8px;border-radius:50%;background:#5BA4F5;flex-shrink:0;"></span>Low documentation</li>
+            <li style="display:flex;align-items:center;gap:10px;font-weight:700;"><span style="width:8px;height:8px;border-radius:50%;background:#5BA4F5;flex-shrink:0;"></span>Favourable early exit options</li>
+          </ul>
+          <div style="display: flex; gap: 12px; flex-wrap: wrap; align-items: center;">
+            <a href="apply.html" class="anim-btn anim-btn-primary">
+              <span class="anim-text">Apply Now</span>
+              <i class="anim-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+              </i>
+            </a>
+            <a href="apply.html" class="anim-btn anim-btn-outline">
+              <span class="anim-text">Get Indicative Offers</span>
+              <i class="anim-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+              </i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Right: stock photo flush to right/top/bottom edge -->
+        <div style="width: 44%; flex-shrink: 0; position: relative; overflow: hidden;">
+          <img src="assets/WhatisSmallBusiness_1920x880.webp"
+               alt="Business owners reviewing finance options"
+               style="width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block;" />
+          <div style="position: absolute; inset: 0; background: linear-gradient(to right, #EEF6FF 0%, transparent 28%); pointer-events: none;"></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── INDUSTRIES CAROUSEL ──────────────────────────────────────────── -->
+  <section class="bg-white pt-14 pb-10 px-6">
+    <div style="max-width: 1140px; margin: 0 auto;">
+      <div style="position: relative; padding: 0 28px;">
+        <button class="ic-btn ic-btn-prev" id="ic-prev" aria-label="Previous">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3L5 8l5 5"/></svg>
+        </button>
+        <button class="ic-btn ic-btn-next" id="ic-next" aria-label="Next">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3l5 5-5 5"/></svg>
+        </button>
+        <div style="overflow: hidden;">
+          <div id="ic-track" style="display: flex; width: 133.333%; transform: translateX(0);">
+            <!-- 4 slots filled by JS -->
+            <div class="ic-slot" style="width: 25%; padding: 0 8px;"><a class="ic-card" href="#"><img src="" alt="" /><div class="ic-overlay"></div><div class="ic-label"></div></a></div>
+            <div class="ic-slot" style="width: 25%; padding: 0 8px;"><a class="ic-card" href="#"><img src="" alt="" /><div class="ic-overlay"></div><div class="ic-label"></div></a></div>
+            <div class="ic-slot" style="width: 25%; padding: 0 8px;"><a class="ic-card" href="#"><img src="" alt="" /><div class="ic-overlay"></div><div class="ic-label"></div></a></div>
+            <div class="ic-slot" style="width: 25%; padding: 0 8px;"><a class="ic-card" href="#"><img src="" alt="" /><div class="ic-overlay"></div><div class="ic-label"></div></a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Static industry list for crawlers — collapsed, same content as JS carousel -->
+    <ul style="height:0;overflow:hidden;visibility:hidden;margin:0;padding:0;" aria-hidden="true">
+      <li><a href="hospitality.html">Hospitality Finance</a></li>
+      <li><a href="construction.html">Construction Finance</a></li>
+      <li><a href="retail.html">Retail Finance</a></li>
+      <li><a href="sole-traders.html">Sole Trader Finance</a></li>
+      <li><a href="professional-services.html">Professional Services Finance</a></li>
+      <li><a href="plumbing.html">Plumbing Finance</a></li>
+      <li><a href="transport.html">Transport Finance</a></li>
+    </ul>
+  </section>
+
+  <!-- ─── QUICK FEATURES STRIP ──────────────────────────────────────────── -->
+  <section class="bg-white pb-6 px-6">
+    <div class="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 pt-6">
+
+      <div class="flex flex-col feat-card" style="border:2px solid #5BA4F5;border-radius:16px;padding:20px;">
+        <div class="feat-icon">
+          <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+          </svg>
+        </div>
+        <h3 class="font-semibold text-base mb-1" style="color:#5BA4F5;">Fully Unsecured</h3>
+        <p class="text-muted text-sm leading-relaxed">No assets required</p>
+      </div>
+
+      <div class="flex flex-col feat-card" style="border:2px solid #5BA4F5;border-radius:16px;padding:20px;">
+        <div class="feat-icon">
+          <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+          </svg>
+        </div>
+        <h3 class="font-semibold text-base mb-1" style="color:#5BA4F5;">Low Documentation</h3>
+        <p class="text-muted text-sm leading-relaxed">Easy approvals</p>
+      </div>
+
+      <div class="flex flex-col feat-card" style="border:2px solid #5BA4F5;border-radius:16px;padding:20px;">
+        <div class="feat-icon">
+          <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+          </svg>
+        </div>
+        <h3 class="font-semibold text-base mb-1" style="color:#5BA4F5;">Quick Funding</h3>
+        <p class="text-muted text-sm leading-relaxed">Enquire today, get funded tonight</p>
+      </div>
+
+      <div class="flex flex-col feat-card" style="border:2px solid #5BA4F5;border-radius:16px;padding:20px;">
+        <div class="feat-icon">
+          <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
+          </svg>
+        </div>
+        <h3 class="font-semibold text-base mb-1" style="color:#5BA4F5;">Multiple Offers</h3>
+        <p class="text-muted text-sm leading-relaxed">Compare from the best offers available</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ─── SERVICES GRID ─────────────────────────────────────────────────── -->
+  <section class="bg-white pb-20 px-6">
+    <div class="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
+
+      <!-- Working Capital Funding -->
+      <div class="svc-card" style="box-shadow: 0 2px 14px rgba(0,0,0,0.08);">
+        <div class="relative" style="height: 200px; overflow: hidden;">
+          <img src="https://images.unsplash.com/photo-1579621970795-87facc2f976d?w=600&h=400&fit=crop&auto=format" alt="Working Capital Funding"
+               style="width:100%; height:100%; object-fit:cover; display:block;">
+          <div class="svc-overlay absolute inset-0"
+               style="background: linear-gradient(to top, rgba(45,53,71,0.78) 0%, rgba(0,0,0,0.1) 55%);"></div>
+          <div class="absolute bottom-0 left-0 p-4">
+            <h3 class="font-sans font-bold text-white text-base leading-tight">Working Capital Funding</h3>
+          </div>
+        </div>
+      </div>
+
+      <!-- Inventory and Stock Finance -->
+      <div class="svc-card" style="box-shadow: 0 2px 14px rgba(0,0,0,0.08);">
+        <div class="relative" style="height: 200px; overflow: hidden;">
+          <img src="https://images.unsplash.com/photo-1553413077-190dd305871c?w=600&h=400&fit=crop&auto=format" alt="Inventory and Stock Finance"
+               style="width:100%; height:100%; object-fit:cover; display:block;">
+          <div class="svc-overlay absolute inset-0"
+               style="background: linear-gradient(to top, rgba(45,53,71,0.78) 0%, rgba(0,0,0,0.1) 55%);"></div>
+          <div class="absolute bottom-0 left-0 p-4">
+            <h3 class="font-sans font-bold text-white text-base leading-tight">Inventory and Stock Finance</h3>
+          </div>
+        </div>
+      </div>
+
+      <!-- ATO / Tax Debt Funding -->
+      <div class="svc-card" style="box-shadow: 0 2px 14px rgba(0,0,0,0.08);">
+        <div class="relative" style="height: 200px; overflow: hidden;">
+          <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=600&h=400&fit=crop&auto=format" alt="ATO / Tax Debt Funding"
+               style="width:100%; height:100%; object-fit:cover; display:block;">
+          <div class="svc-overlay absolute inset-0"
+               style="background: linear-gradient(to top, rgba(45,53,71,0.78) 0%, rgba(0,0,0,0.1) 55%);"></div>
+          <div class="absolute bottom-0 left-0 p-4">
+            <h3 class="font-sans font-bold text-white text-base leading-tight">ATO / Tax Debt Funding</h3>
+          </div>
+        </div>
+      </div>
+
+      <!-- Fit-Out & Renovation Funding -->
+      <div class="svc-card" style="box-shadow: 0 2px 14px rgba(0,0,0,0.08);">
+        <div class="relative" style="height: 200px; overflow: hidden;">
+          <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&h=400&fit=crop&auto=format" alt="Fit-Out & Renovation Funding"
+               style="width:100%; height:100%; object-fit:cover; display:block;">
+          <div class="svc-overlay absolute inset-0"
+               style="background: linear-gradient(to top, rgba(45,53,71,0.78) 0%, rgba(0,0,0,0.1) 55%);"></div>
+          <div class="absolute bottom-0 left-0 p-4">
+            <h3 class="font-sans font-bold text-white text-base leading-tight">Fit-Out &amp; Renovation Funding</h3>
+          </div>
+        </div>
+      </div>
+
+      <!-- Business Loan Refinance -->
+      <div class="svc-card" style="box-shadow: 0 2px 14px rgba(0,0,0,0.08);">
+        <div class="relative" style="height: 200px; overflow: hidden;">
+          <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&h=400&fit=crop&auto=format" alt="Business Loan Refinance"
+               style="width:100%; height:100%; object-fit:cover; display:block;">
+          <div class="svc-overlay absolute inset-0"
+               style="background: linear-gradient(to top, rgba(45,53,71,0.78) 0%, rgba(0,0,0,0.1) 55%);"></div>
+          <div class="absolute bottom-0 left-0 p-4">
+            <h3 class="font-sans font-bold text-white text-base leading-tight">Business Loan Refinance</h3>
+          </div>
+        </div>
+      </div>
+
+      <!-- Vehicle Finance -->
+      <div class="svc-card" style="box-shadow: 0 2px 14px rgba(0,0,0,0.08);">
+        <div class="relative" style="height: 200px; overflow: hidden;">
+          <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=400&fit=crop&auto=format" alt="Vehicle Finance"
+               style="width:100%; height:100%; object-fit:cover; display:block;">
+          <div class="svc-overlay absolute inset-0"
+               style="background: linear-gradient(to top, rgba(45,53,71,0.78) 0%, rgba(0,0,0,0.1) 55%);"></div>
+          <div class="absolute bottom-0 left-0 p-4">
+            <h3 class="font-sans font-bold text-white text-base leading-tight">Vehicle Finance</h3>
+          </div>
+        </div>
+      </div>
+
+      <!-- Payroll Funding -->
+      <div class="svc-card" style="box-shadow: 0 2px 14px rgba(0,0,0,0.08);">
+        <div class="relative" style="height: 200px; overflow: hidden;">
+          <img src="https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&h=400&fit=crop&auto=format" alt="Payroll Funding"
+               style="width:100%; height:100%; object-fit:cover; display:block;">
+          <div class="svc-overlay absolute inset-0"
+               style="background: linear-gradient(to top, rgba(45,53,71,0.78) 0%, rgba(0,0,0,0.1) 55%);"></div>
+          <div class="absolute bottom-0 left-0 p-4">
+            <h3 class="font-sans font-bold text-white text-base leading-tight">Payroll Funding</h3>
+          </div>
+        </div>
+      </div>
+
+      <!-- Caravan Loans -->
+      <div class="svc-card" style="box-shadow: 0 2px 14px rgba(0,0,0,0.08);">
+        <div class="relative" style="height: 200px; overflow: hidden;">
+          <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=600&h=400&fit=crop&auto=format" alt="Caravan Loans"
+               style="width:100%; height:100%; object-fit:cover; display:block;">
+          <div class="svc-overlay absolute inset-0"
+               style="background: linear-gradient(to top, rgba(45,53,71,0.78) 0%, rgba(0,0,0,0.1) 55%);"></div>
+          <div class="absolute bottom-0 left-0 p-4">
+            <h3 class="font-sans font-bold text-white text-base leading-tight">Caravan Loans</h3>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ─── WHAT MAKES US DIFFERENT ───────────────────────────────────────── -->
+  <section class="bg-white py-20 px-6">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="font-serif font-bold text-ink mb-12"
+          style="font-size: 2.1rem; letter-spacing: -0.02em;">What Makes Us Different?</h2>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+
+        <div class="diff-item feat-card" style="border:2px solid #5BA4F5;border-radius:16px;padding:24px;">
+          <h3 class="font-sans font-bold text-ink text-base mb-2">We Protect Your Credit Score</h3>
+          <p class="text-muted leading-relaxed" style="line-height: 1.75; font-size: 0.9375rem;">
+            We only run a single soft enquiry to explore your options, protecting your credit file while still giving you access to our full panel of 60+ lenders. No shotgun-style applications that leave marks on your record.
+          </p>
+        </div>
+
+        <div class="diff-item feat-card" style="border:2px solid #5BA4F5;border-radius:16px;padding:24px;">
+          <h3 class="font-sans font-bold text-ink text-base mb-2">We Do the Legwork</h3>
+          <p class="text-muted leading-relaxed" style="line-height: 1.75; font-size: 0.9375rem;">
+            We compare dozens of lenders and handle all the paperwork so you don't have to spend hours on hold or filling out forms. You sit back while we do the hard work.
+          </p>
+        </div>
+
+        <div class="diff-item feat-card" style="border:2px solid #5BA4F5;border-radius:16px;padding:24px;">
+          <h3 class="font-sans font-bold text-ink text-base mb-2">Smarter Finance, Not Sales Pitches</h3>
+          <p class="text-muted leading-relaxed" style="line-height: 1.75; font-size: 0.9375rem;">
+            We don't recommend what earns us the highest commission — we recommend what genuinely fits your situation and budget. No pressure, no fluff, no upsells.
+          </p>
+        </div>
+
+        <div class="diff-item feat-card" style="border:2px solid #5BA4F5;border-radius:16px;padding:24px;">
+          <h3 class="font-sans font-bold text-ink text-base mb-2">Fast, Friendly, and Hassle-Free</h3>
+          <p class="text-muted leading-relaxed" style="line-height: 1.75; font-size: 0.9375rem;">
+            Most applications are turned around within the day. We keep things simple, clear, and completely stress-free from the first conversation to final approval.
+          </p>
+        </div>
+
+        <div class="diff-item feat-card sm:col-span-2" style="border:2px solid #5BA4F5;border-radius:16px;padding:24px;">
+          <h3 class="font-sans font-bold text-ink text-base mb-2">Real People, Real Help</h3>
+          <p class="text-muted leading-relaxed" style="line-height: 1.75; font-size: 0.9375rem;">
+            You'll always speak to a real human who knows your file. No bots, no call centres, no runarounds — just genuine, straightforward help every step of the way.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── LENDERS BANNER ────────────────────────────────────────────────── -->
+  <section class="px-6 py-16 bg-ice">
+    <div class="max-w-4xl mx-auto">
+      <div class="rounded-2xl p-10 text-center"
+           style="background: #5BA4F5; box-shadow: 0 8px 40px rgba(91,164,245,0.32);">
+        <p class="font-serif font-bold text-white"
+           style="font-size: 1.35rem; line-height: 1.55; letter-spacing: -0.01em; max-width: 560px; margin: 0 auto;">
+          We work with over 60 lenders to unlock finance options most people will never see.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── LENDER LOGOS ──────────────────────────────────────────────────── -->
+  <section class="bg-white py-12 px-6" style="border-top: 1px solid #F0F0F0;">
+    <div class="max-w-4xl mx-auto">
+      <p class="text-center text-muted text-xs font-semibold uppercase tracking-widest mb-8">Our Lending Partners</p>
+      <div class="flex flex-wrap items-center justify-center gap-8 md:gap-14">
+        <span class="lender-name">Major Banks</span>
+        <span class="lender-name">Non-Bank Lenders</span>
+        <span class="lender-name">Specialist Finance</span>
+        <span class="lender-name">Equipment Lenders</span>
+        <span class="text-muted text-sm font-medium tracking-wide">60+ lenders total</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── CLIENT REVIEWS ──────────────────────────────────────────────── -->
+  <section style="background: #F5F7FA; padding: 80px 24px 100px;">
+    <div style="max-width: 1140px; margin: 0 auto;">
+
+      <h2 class="font-serif font-bold text-ink mb-3"
+          style="font-size: 2.1rem; letter-spacing: -0.02em;">Client Reviews</h2>
+      <p class="text-muted text-sm mb-12">What our clients say about working with us.</p>
+
+      <div class="t-grid">
+
+        <!-- Card 1 -->
+        <div class="t-card">
+          <div class="t-quote">"</div>
+          <div class="t-stars">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#facc15" stroke="#facc15" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#facc15" stroke="#facc15" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#facc15" stroke="#facc15" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#facc15" stroke="#facc15" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#facc15" stroke="#facc15" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <p class="t-text">Will was excellent to deal with. The entire process couldn't have been more simple and efficient!</p>
+          <div class="t-author">
+            <img class="t-avatar" src="assets/generic-profile-picture-placeholder-x8zosu1snova6wm5.png" alt="Brad" />
+            <div>
+              <div class="t-name">Brad</div>
+              <div class="t-role">Business Loan · Sydney</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="t-card">
+          <div class="t-quote">"</div>
+          <div class="t-stars">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#facc15" stroke="#facc15" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#facc15" stroke="#facc15" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#facc15" stroke="#facc15" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#facc15" stroke="#facc15" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#facc15" stroke="#facc15" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <p class="t-text">As a returning customer, the application and approvals process, was the easiest and fastest I've experienced.</p>
+          <div class="t-author">
+            <img class="t-avatar" src="assets/generic-profile-picture-placeholder-x8zosu1snova6wm5.png" alt="Frank" />
+            <div>
+              <div class="t-name">Frank</div>
+              <div class="t-role">Business Loan · Sydney</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="t-card">
+          <div class="t-quote">"</div>
+          <div class="t-stars">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#facc15" stroke="#facc15" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#facc15" stroke="#facc15" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#facc15" stroke="#facc15" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#facc15" stroke="#facc15" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#facc15" stroke="#facc15" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <p class="t-text">William was very helpful and knowledgeable. Their process was easy and straightforward with a fast approval. Will definitely use them again and recommend.</p>
+          <div class="t-author">
+            <img class="t-avatar" src="assets/generic-profile-picture-placeholder-x8zosu1snova6wm5.png" alt="Sharbel" />
+            <div>
+              <div class="t-name">Sharbel</div>
+              <div class="t-role">Business Term Loan</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── FOOTER ─────────────────────────────────────────────────────────── -->
+  <footer style="background-color: #2D3547;" class="py-14 px-6">
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-10">
+
+      <!-- Logo block -->
+      <div>
+        <div class="mb-3">
+          <div style="background: white; border-radius: 10px; padding: 10px 18px; display: inline-block;">
+            <img src="assets/logo.png" alt="Lighter Finance" style="height: 36px; width: auto; display: block;" />
+          </div>
+        </div>
+        <p class="text-gray-400 text-xs leading-relaxed max-w-xs mt-3" style="line-height: 1.7;">
+          For businesses wanting a lighter path to success.
+        </p>
+      </div>
+
+      <!-- Footer nav -->
+      <nav class="flex flex-wrap gap-x-8 gap-y-3">
+        <a href="about.html" class="text-gray-400 hover:text-white text-sm transition-colors duration-200">About Us</a>
+        <a href="industries.html" class="text-gray-400 hover:text-white text-sm transition-colors duration-200">Industries</a>
+        <a href="about.html#team" class="text-gray-400 hover:text-white text-sm transition-colors duration-200">Meet Your Brokers</a>
+        <a href="apply.html" class="text-gray-400 hover:text-white text-sm transition-colors duration-200">Contact</a>
+        <a href="#" class="text-gray-400 hover:text-white text-sm transition-colors duration-200">Privacy Policy</a>
+      </nav>
+
+    </div>
+
+    <!-- Bottom bar -->
+    <div class="max-w-6xl mx-auto mt-10 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4"
+         style="border-top: 1px solid rgba(255,255,255,0.08);">
+      <p class="text-gray-500 text-xs">© 2026 Lighter Finance Pty Ltd. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Loan calculator slider -->
+  <script>
+    (function () {
+      var slider = document.getElementById('loan-slider');
+      var display = document.getElementById('calc-amount-display');
+      if (!slider || !display) return;
+
+      function update() {
+        var min = parseInt(slider.min);
+        var max = parseInt(slider.max);
+        var val = parseInt(slider.value);
+        var pct = ((val - min) / (max - min)) * 100;
+        slider.style.setProperty('--fill', pct + '%');
+        display.textContent = '$' + val.toLocaleString('en-AU');
+      }
+
+      slider.addEventListener('input', update);
+      update();
+    })();
+  </script>
+
+  <!-- FloatingPaths hero background + cycling word -->
+  <script type="module">
+    import React          from 'react';
+    import { createRoot } from 'react-dom/client';
+    import { motion }     from 'framer-motion';
+
+    const R = React.createElement;
+
+    // ── FloatingPaths (hero background) ────────────────────────────────────
+    function FloatingPaths({ position }) {
+      const paths = Array.from({ length: 36 }, (_, i) => ({
+        id: i,
+        d: `M-${380 - i * 5 * position} -${189 + i * 6}C-${380 - i * 5 * position} -${189 + i * 6} -${312 - i * 5 * position} ${216 - i * 6} ${152 - i * 5 * position} ${343 - i * 6}C${616 - i * 5 * position} ${470 - i * 6} ${684 - i * 5 * position} ${875 - i * 6} ${684 - i * 5 * position} ${875 - i * 6}`,
+        width: 0.5 + i * 0.03,
+      }));
+
+      return R('div', { style: { position: 'absolute', inset: 0, pointerEvents: 'none' } },
+        R('svg', {
+          style: { width: '100%', height: '100%', color: '#5BA4F5' },
+          viewBox: '0 0 696 316',
+          fill: 'none',
+        },
+          ...paths.map(path =>
+            R(motion.path, {
+              key: path.id,
+              d: path.d,
+              stroke: 'currentColor',
+              strokeWidth: path.width,
+              strokeOpacity: 0.04 + path.id * 0.012,
+              initial: { pathLength: 0.3, opacity: 0.6 },
+              animate: {
+                pathLength: 1,
+                opacity: [0.3, 0.6, 0.3],
+                pathOffset: [0, 1, 0],
+              },
+              transition: {
+                duration: 20 + Math.random() * 10,
+                repeat: Infinity,
+                ease: 'linear',
+              },
+            })
+          )
+        )
+      );
+    }
+
+    function HeroBackground() {
+      return R('div', { style: { position: 'absolute', inset: 0, pointerEvents: 'none', overflow: 'hidden' } },
+        R(FloatingPaths, { position: 1 }),
+        R(FloatingPaths, { position: -1 }),
+      );
+    }
+
+    // ── Mount ───────────────────────────────────────────────────────────────
+    const pathsContainer = document.getElementById('floating-paths-root');
+    if (pathsContainer) createRoot(pathsContainer).render(R(HeroBackground));
+  </script>
+
+  <!-- Cycling hero word -->
+  <script>
+    (function () {
+      const words = ['Finance', 'Paperwork', 'Stress', 'Rates'];
+      let idx = 0;
+      const el = document.getElementById('cycling-word');
+      if (!el) return;
+
+      setInterval(function () {
+        // slide out upward
+        el.style.transform = 'translateY(-110%)';
+        el.style.opacity = '0';
+
+        setTimeout(function () {
+          idx = (idx + 1) % words.length;
+          el.textContent = words[idx];
+          // snap below without transition
+          el.style.transition = 'none';
+          el.style.transform = 'translateY(110%)';
+          el.style.opacity = '0';
+          // re-enable transition and slide in
+          void el.offsetHeight;
+          el.style.transition = 'transform 0.45s cubic-bezier(0.4,0,0.2,1), opacity 0.35s';
+          el.style.transform = 'translateY(0)';
+          el.style.opacity = '1';
+        }, 380);
+      }, 3200);
+    })();
+  </script>
+
+  <!-- Industry carousel -->
+  <script>
+    (function () {
+      var industries = [
+        { name: 'Hospitality',            url: 'hospitality.html',           img: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&h=400&fit=crop&auto=format' },
+        { name: 'Construction',           url: 'construction.html',          img: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&h=400&fit=crop&auto=format' },
+        { name: 'Retail',                 url: 'retail.html',                img: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=600&h=400&fit=crop&auto=format' },
+        { name: 'Sole Traders',           url: 'sole-traders.html',          img: 'https://images.unsplash.com/photo-1590608897129-79da98d15969?w=600&h=400&fit=crop&auto=format' },
+        { name: 'Professional Services',  url: 'professional-services.html', img: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&h=400&fit=crop&auto=format' },
+        { name: 'Plumbing',               url: 'plumbing.html',              img: 'https://images.unsplash.com/photo-1607472586893-edb57bdc0e39?w=600&h=400&fit=crop&auto=format' },
+        { name: 'Transport',              url: 'transport.html',             img: 'https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=600&h=400&fit=crop&auto=format' },
+      ];
+
+      var CARDS_PER_VIEW = 3;
+      var currentIndex = 0;
+      var isAnimating = false;
+      var track = document.getElementById('ic-track');
+      var slots = track ? track.querySelectorAll('.ic-slot') : [];
+      var btnPrev = document.getElementById('ic-prev');
+      var btnNext = document.getElementById('ic-next');
+
+      function getVisible() {
+        var result = [];
+        for (var i = 0; i < CARDS_PER_VIEW + 1; i++) {
+          result.push(industries[(currentIndex + i) % industries.length]);
+        }
+        return result;
+      }
+
+      function renderCards() {
+        var visible = getVisible();
+        slots.forEach(function (slot, i) {
+          var card = slot.querySelector('.ic-card');
+          var img = slot.querySelector('img');
+          var label = slot.querySelector('.ic-label');
+          card.href = visible[i].url;
+          img.src = visible[i].img;
+          img.alt = visible[i].name;
+          label.textContent = visible[i].name;
+        });
+      }
+
+      function next() {
+        if (isAnimating) return;
+        isAnimating = true;
+        var cardPct = 100 / (CARDS_PER_VIEW + 1); // 25% of track
+        track.style.transition = 'transform 500ms ease';
+        track.style.transform = 'translateX(-' + cardPct + '%)';
+        setTimeout(function () {
+          currentIndex = (currentIndex + 1) % industries.length;
+          track.style.transition = 'none';
+          track.style.transform = 'translateX(0)';
+          renderCards();
+          void track.offsetWidth;
+          isAnimating = false;
+        }, 500);
+      }
+
+      function prev() {
+        if (isAnimating) return;
+        isAnimating = true;
+        var cardPct = 100 / (CARDS_PER_VIEW + 1);
+        currentIndex = (currentIndex - 1 + industries.length) % industries.length;
+        track.style.transition = 'none';
+        track.style.transform = 'translateX(-' + cardPct + '%)';
+        renderCards();
+        void track.offsetWidth;
+        track.style.transition = 'transform 500ms ease';
+        track.style.transform = 'translateX(0)';
+        setTimeout(function () { isAnimating = false; }, 500);
+      }
+
+      if (track && slots.length) {
+        renderCards();
+        btnPrev && btnPrev.addEventListener('click', prev);
+        btnNext && btnNext.addEventListener('click', next);
+      }
+    })();
+  </script>
+
+  <!-- Dropdown toggles -->
+  <script>
+    (function () {
+      function initDropdown(triggerId, dropdownId) {
+        var trigger = document.getElementById(triggerId);
+        var dropdown = document.getElementById(dropdownId);
+        if (!trigger || !dropdown) return;
+
+        function open() {
+          trigger.classList.add('open');
+          dropdown.classList.add('open');
+          trigger.setAttribute('aria-expanded', 'true');
+        }
+        function close() {
+          trigger.classList.remove('open');
+          dropdown.classList.remove('open');
+          trigger.setAttribute('aria-expanded', 'false');
+        }
+
+        trigger.addEventListener('click', function (e) {
+          e.stopPropagation();
+          dropdown.classList.contains('open') ? close() : open();
+        });
+
+        document.addEventListener('click', function (e) {
+          if (!trigger.contains(e.target) && !dropdown.contains(e.target)) close();
+        });
+
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape') close();
+        });
+      }
+
+      initDropdown('ind-trigger', 'ind-dropdown');
+      initDropdown('broker-trigger', 'broker-dropdown');
+    })();
+  </script>
+
+  <script>(function(){var pill=document.getElementById('nav-pill');var cursor=document.getElementById('nav-cursor');if(!pill||!cursor)return;var items=Array.from(pill.querySelectorAll('.nav-pill-item'));items.forEach(function(item){item.addEventListener('mouseenter',function(){var pr=pill.getBoundingClientRect();var ir=item.getBoundingClientRect();cursor.style.left=(ir.left-pr.left-2)+'px';cursor.style.width=ir.width+'px';cursor.style.opacity='1';});});pill.addEventListener('mouseleave',function(){cursor.style.opacity='0';});})();</script>
+</body>
+</html>

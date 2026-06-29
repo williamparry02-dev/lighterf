@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Apply for a business loan through Lighter Finance. Takes 2 minutes — tell us your loan amount, monthly turnover, and time in business and we'll find your best options." />
+  <title>Apply Now – Lighter Finance</title>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://lighterfinance.com.au/#organization",
+        "name": "Lighter Finance",
+        "url": "https://lighterfinance.com.au",
+        "logo": "https://lighterfinance.com.au/assets/logo.png",
+        "description": "Australian business finance brokerage comparing 60+ lenders to find the best unsecured business loans and working capital for SMEs.",
+        "address": { "@type": "PostalAddress", "addressLocality": "Sydney", "addressRegion": "NSW", "addressCountry": "AU" },
+        "telephone": "0478022067",
+        "email": "enquiries@lighterfinance.com.au",
+        "areaServed": { "@type": "Country", "name": "Australia" }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://lighterfinance.com.au/" },
+          { "@type": "ListItem", "position": 2, "name": "Apply Now", "item": "https://lighterfinance.com.au/apply.html" }
+        ]
+      }
+    ]
+  }
+  </script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,600;0,700&family=Roboto+Slab:wght@400;600;700&display=swap" rel="stylesheet" />
+  <script>tailwind.config={theme:{extend:{colors:{brand:'#5BA4F5','brand-dark':'#4A93E4',navy:'#2D3547',ice:'#EEF6FF',ink:'#2D3547',muted:'#6B7280',mid:'#54595F'},fontFamily:{sans:['Roboto','sans-serif'],serif:['Roboto Slab','serif']}}}};</script>
+  <style>
+    html{-webkit-font-smoothing:antialiased;}
+    @keyframes fadeInUp{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
+    @keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+    .fade-up-1{animation:fadeInUp 0.55s cubic-bezier(0.4,0,0.2,1) 0.05s both;}
+    .fade-up-2{animation:fadeInUp 0.55s cubic-bezier(0.4,0,0.2,1) 0.15s both;}
+    .fade-up-3{animation:fadeInUp 0.55s cubic-bezier(0.4,0,0.2,1) 0.25s both;}
+    .fade-up-4{animation:fadeInUp 0.55s cubic-bezier(0.4,0,0.2,1) 0.35s both;}
+    .fade-up-5{animation:fadeInUp 0.55s cubic-bezier(0.4,0,0.2,1) 0.42s both;}
+    .fade-up-6{animation:fadeInUp 0.55s cubic-bezier(0.4,0,0.2,1) 0.49s both;}
+
+    /* Nav */
+    .nav-link{position:relative;}.nav-link::after{content:'';position:absolute;bottom:-2px;left:0;width:0;height:2px;background:#5BA4F5;transition:width 0.22s cubic-bezier(.4,0,.2,1);}.nav-link:hover::after{width:100%;}
+    .btn-primary{transition:background 0.2s,box-shadow 0.2s,transform 0.15s;}.btn-primary:hover{background:#4A93E4;box-shadow:0 6px 24px rgba(91,164,245,0.45);transform:translateY(-1px);}
+    .ind-wrap{position:relative;}.ind-trigger{display:inline-flex;align-items:center;gap:5px;font-size:0.875rem;font-weight:500;color:#54595F;cursor:pointer;background:none;border:none;padding:0;font-family:'Roboto',sans-serif;transition:color 0.2s;position:relative;}
+    .ind-trigger::after{content:'';position:absolute;bottom:-2px;left:0;width:0;height:2px;background:#5BA4F5;transition:width 0.22s cubic-bezier(.4,0,.2,1);}.ind-trigger:hover::after,.ind-trigger.open::after{width:100%;}
+    .ind-trigger:hover,.ind-trigger.open{color:#2D3547;}.ind-trigger svg{transition:transform 0.22s cubic-bezier(.4,0,.2,1);}.ind-trigger.open svg{transform:rotate(180deg);}
+    .ind-dropdown{position:absolute;top:calc(100% + 14px);left:50%;transform:translateX(-50%) translateY(-6px);min-width:210px;background:#fff;border:1px solid rgba(91,164,245,0.18);border-radius:12px;box-shadow:0 8px 32px rgba(45,53,71,0.12),0 2px 8px rgba(91,164,245,0.08);padding:8px;opacity:0;pointer-events:none;transition:opacity 0.2s cubic-bezier(.4,0,.2,1),transform 0.2s cubic-bezier(.4,0,.2,1);z-index:200;}
+    .ind-dropdown.open{opacity:1;pointer-events:auto;transform:translateX(-50%) translateY(0);}
+    .ind-dropdown a{display:flex;align-items:center;gap:10px;padding:9px 14px;border-radius:8px;font-size:0.875rem;font-weight:500;color:#2D3547;text-decoration:none;transition:background 0.15s,color 0.15s;}.ind-dropdown a:hover{background:#EEF6FF;color:#5BA4F5;}
+    .ind-dot{width:6px;height:6px;border-radius:50%;background:#5BA4F5;flex-shrink:0;opacity:0.5;transition:opacity 0.15s;}.ind-dropdown a:hover .ind-dot{opacity:1;}
+
+    /* Left panel decorations */
+    .orb{position:absolute;border-radius:50%;pointer-events:none;}
+
+    /* Form fields */
+    .field-wrap{position:relative;margin-bottom:20px;}
+    .field-label{display:block;font-size:0.75rem;font-weight:600;text-transform:uppercase;letter-spacing:0.07em;color:#2D3547;margin-bottom:7px;}
+    .field-input{width:100%;height:48px;padding:0 16px;border:1.5px solid #E5E7EB;border-radius:10px;font-family:'Roboto',sans-serif;font-size:0.9375rem;color:#2D3547;background:#fff;outline:none;transition:border-color 0.18s,box-shadow 0.18s;-webkit-appearance:none;appearance:none;}
+    .field-input:focus{border-color:#5BA4F5;box-shadow:0 0 0 3px rgba(91,164,245,0.14);}
+    .field-input::placeholder{color:#B4BAC6;}
+    .field-select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236B7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:42px;cursor:pointer;}
+    .field-select option[value=""]{color:#B4BAC6;}
+    .prefix-wrap{position:relative;}.prefix-wrap .field-input{padding-left:34px;}
+    .prefix-symbol{position:absolute;left:14px;top:50%;transform:translateY(-50%);font-size:0.9375rem;color:#9CA3AF;pointer-events:none;font-family:'Roboto',sans-serif;}
+
+    /* Submit button */
+    .submit-btn{width:100%;height:52px;background:#5BA4F5;color:#fff;border:none;border-radius:10px;font-family:'Roboto',sans-serif;font-size:1rem;font-weight:600;cursor:pointer;position:relative;overflow:hidden;transition:background 0.2s,box-shadow 0.2s,transform 0.15s;box-shadow:0 4px 20px rgba(91,164,245,0.38);display:flex;align-items:center;justify-content:center;gap:10px;text-decoration:none;}
+    .submit-btn:hover{background:#4A93E4;box-shadow:0 8px 32px rgba(91,164,245,0.48);transform:translateY(-1px);}
+    .submit-btn:active{transform:translateY(0);box-shadow:0 2px 12px rgba(91,164,245,0.3);}
+
+    /* Trust badge */
+    .trust-badge{display:flex;align-items:center;gap:10px;padding:14px 18px;border-radius:12px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.1);}
+
+    /* Success state */
+    #success-state{display:none;}
+    @keyframes checkPop{0%{transform:scale(0);}60%{transform:scale(1.2);}100%{transform:scale(1);}}
+    .check-circle{animation:checkPop 0.4s cubic-bezier(0.34,1.56,0.64,1) 0.1s both;}
+  
+    /* ── Sliding pill nav ── */
+    .nav-pill-wrap{position:relative;display:flex;align-items:center;list-style:none;margin:0;padding:4px;border-radius:999px;border:2px solid #5BA4F5;background:#fff;isolation:isolate;}
+    .nav-cursor{position:absolute;top:4px;height:calc(100% - 8px);border-radius:999px;background:#5BA4F5;z-index:0;pointer-events:none;opacity:0;transition:left 0.22s cubic-bezier(0.4,0,0.2,1),width 0.22s cubic-bezier(0.4,0,0.2,1),opacity 0.18s;}
+    .nav-pill-item{position:relative;z-index:1;list-style:none;}
+    .nav-pill-link{display:flex;align-items:center;gap:5px;padding:8px 14px;font-size:0.875rem;font-weight:500;color:#2D3547;white-space:nowrap;text-decoration:none;cursor:pointer;font-family:'Roboto',sans-serif;}
+    .nav-pill-item .ind-trigger{padding:8px 14px;color:#2D3547;font-size:0.875rem;font-weight:500;}
+    .nav-pill-item .ind-trigger::after{display:none !important;}
+    .nav-pill-item .ind-trigger:hover,.nav-pill-item .ind-trigger.open{color:#2D3547;}
+  </style>
+</head>
+<body class="bg-white font-sans" style="color:#2D3547;">
+
+  <!-- NAV -->
+  <header class="sticky top-0 z-50" style="background:rgba(255,255,255,0.88);backdrop-filter:blur(12px);box-shadow:0 1px 0 rgba(0,0,0,0.09);">
+    <div class="max-w-6xl mx-auto px-6 flex items-center justify-between gap-6" style="height:60px;">
+      <a href="index.html" class="shrink-0" style="height:60px;overflow:hidden;display:flex;align-items:center;"><img src="assets/lighter_finance_logo_true_transparent.png" alt="Lighter Finance" style="height:220px;width:auto;" /></a>
+            <nav class="hidden md:flex items-center">
+        <ul class="nav-pill-wrap" id="nav-pill">
+          <div class="nav-cursor" id="nav-cursor"></div>
+          <li class="nav-pill-item"><a href="index.html" class="nav-pill-link">Home</a></li>
+          <li class="nav-pill-item"><a href="about.html" class="nav-pill-link">About Us</a></li>
+          <li class="nav-pill-item ind-wrap">
+            <button class="ind-trigger" id="ind-trigger" aria-haspopup="true" aria-expanded="false">
+              Industries
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4l4 4 4-4"/></svg>
+            </button>
+            <div class="ind-dropdown" id="ind-dropdown" role="menu">
+              <a href="hospitality.html" role="menuitem"><span class="ind-dot"></span>Hospitality</a>
+              <a href="construction.html" role="menuitem"><span class="ind-dot"></span>Construction</a>
+              <a href="retail.html" role="menuitem"><span class="ind-dot"></span>Retail</a>
+              <a href="sole-traders.html" role="menuitem"><span class="ind-dot"></span>Sole Traders</a>
+              <a href="professional-services.html" role="menuitem"><span class="ind-dot"></span>Professional Services</a>
+              <a href="plumbing.html" role="menuitem"><span class="ind-dot"></span>Plumbing</a>
+              <a href="transport.html" role="menuitem"><span class="ind-dot"></span>Transport</a>
+            </div>
+          </li>
+          <li class="nav-pill-item ind-wrap">
+            <button class="ind-trigger" id="broker-trigger" aria-haspopup="true" aria-expanded="false">
+              Meet Your Brokers
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4l4 4 4-4"/></svg>
+            </button>
+            <div class="ind-dropdown" id="broker-dropdown" role="menu">
+              <a href="about.html#team" role="menuitem"><span class="ind-dot"></span>William</a>
+              <a href="about.html#team" role="menuitem"><span class="ind-dot"></span>Steve</a>
+              <a href="about.html#team" role="menuitem"><span class="ind-dot"></span>James</a>
+              <a href="about.html#team" role="menuitem"><span class="ind-dot"></span>Toby</a>
+            </div>
+          </li>
+          <li class="nav-pill-item"><a href="contact.html" class="nav-pill-link">Contact</a></li>
+        </ul>
+      </nav>
+      <a href="apply.html" class="btn-primary bg-brand text-white text-sm font-semibold px-5 py-2 rounded shrink-0" style="box-shadow:0 2px 12px rgba(91,164,245,0.35);">Get Started</a>
+    </div>
+  </header>
+
+  <!-- MAIN: SPLIT LAYOUT -->
+  <main style="display:grid;grid-template-columns:1fr 1.35fr;min-height:calc(100vh - 60px);">
+
+    <!-- LEFT PANEL -->
+    <div style="background:#2D3547;padding:64px 52px;position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:center;">
+
+      <!-- Decorative orbs -->
+      <div class="orb" style="width:380px;height:380px;background:radial-gradient(circle,rgba(91,164,245,0.22) 0%,transparent 70%);top:-80px;left:-100px;"></div>
+      <div class="orb" style="width:280px;height:280px;background:radial-gradient(circle,rgba(91,164,245,0.16) 0%,transparent 70%);bottom:40px;right:-60px;"></div>
+      <div class="orb" style="width:160px;height:160px;background:radial-gradient(circle,rgba(91,164,245,0.12) 0%,transparent 70%);bottom:200px;left:20px;"></div>
+
+      <!-- Content -->
+      <div style="position:relative;z-index:1;">
+
+        <!-- Logo -->
+        <div style="display:inline-block;background:#fff;border-radius:10px;padding:8px 16px;margin-bottom:48px;">
+          <img src="assets/logo.png" alt="Lighter Finance" style="height:32px;width:auto;display:block;" />
+        </div>
+
+        <!-- Headline -->
+        <p style="font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:#5BA4F5;margin-bottom:14px;">Quick Application</p>
+        <h1 style="font-family:'Roboto Slab',serif;font-size:clamp(1.875rem,3vw,2.625rem);font-weight:700;color:#fff;line-height:1.2;letter-spacing:-0.025em;margin-bottom:20px;">Let's find the right funding for your business.</h1>
+        <p style="font-size:0.9375rem;color:rgba(255,255,255,0.55);line-height:1.75;margin-bottom:48px;max-width:340px;">Fill in the short form and one of our brokers will be in touch — usually within a few hours.</p>
+
+        <!-- Trust badges -->
+        <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:48px;">
+          <div class="trust-badge">
+            <div style="width:36px;height:36px;border-radius:8px;background:rgba(91,164,245,0.18);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5BA4F5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <div>
+              <div style="font-size:0.875rem;font-weight:600;color:#fff;line-height:1.2;">60+ lender partners</div>
+              <div style="font-size:0.75rem;color:rgba(255,255,255,0.45);margin-top:2px;">We compare across the market for you</div>
+            </div>
+          </div>
+          <div class="trust-badge">
+            <div style="width:36px;height:36px;border-radius:8px;background:rgba(91,164,245,0.18);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5BA4F5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <div>
+              <div style="font-size:0.875rem;font-weight:600;color:#fff;line-height:1.2;">Response within the day</div>
+              <div style="font-size:0.75rem;color:rgba(255,255,255,0.45);margin-top:2px;">Often same day during business hours</div>
+            </div>
+          </div>
+          <div class="trust-badge">
+            <div style="width:36px;height:36px;border-radius:8px;background:rgba(91,164,245,0.18);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5BA4F5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            </div>
+            <div>
+              <div style="font-size:0.875rem;font-weight:600;color:#fff;line-height:1.2;">$0 broker fees to you</div>
+              <div style="font-size:0.75rem;color:rgba(255,255,255,0.45);margin-top:2px;">We're paid by the lender, not you</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Privacy note -->
+        <div style="display:flex;align-items:center;gap:8px;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          <p style="font-size:0.75rem;color:rgba(255,255,255,0.3);line-height:1.5;">Your information is private and secure. No credit check at this stage.</p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- RIGHT PANEL: CONTACT -->
+    <div style="background:#F7F9FB;display:flex;align-items:center;justify-content:center;padding:56px 48px;overflow-y:auto;">
+      <div style="width:100%;max-width:480px;">
+
+        <div class="fade-up-1" style="background:#fff;border-radius:20px;padding:44px 40px;box-shadow:0 4px 32px rgba(45,53,71,0.08),0 1px 4px rgba(45,53,71,0.06);">
+
+          <h2 class="fade-up-2" style="font-family:'Roboto Slab',serif;font-size:1.5rem;font-weight:700;color:#2D3547;margin-bottom:14px;letter-spacing:-0.02em;">Get in touch</h2>
+
+          <p class="fade-up-3" style="font-size:0.9375rem;color:#6B7280;line-height:1.75;margin-bottom:36px;">Send us an email with some basic information about yourself, your business, and your current situation — and we'll get back to you shortly with your options.</p>
+
+          <!-- Email -->
+          <a href="mailto:enquiries@lighterfinance.com.au" class="fade-up-4" style="display:flex;align-items:center;gap:16px;padding:20px 22px;border:2px solid #5BA4F5;border-radius:14px;text-decoration:none;margin-bottom:16px;transition:box-shadow 0.22s,transform 0.22s;box-shadow:0 2px 12px rgba(91,164,245,0.1);" onmouseover="this.style.boxShadow='0 8px 28px rgba(91,164,245,0.25)';this.style.transform='translateY(-2px)';" onmouseout="this.style.boxShadow='0 2px 12px rgba(91,164,245,0.1)';this.style.transform='translateY(0)';">
+            <div style="width:44px;height:44px;border-radius:10px;background:#EEF6FF;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5BA4F5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <div>
+              <div style="font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:#9CA3AF;margin-bottom:3px;">Email us</div>
+              <div style="font-size:1rem;font-weight:600;color:#2D3547;">enquiries@lighterfinance.com.au</div>
+            </div>
+          </a>
+
+          <!-- Phone -->
+          <a href="tel:0478022067" class="fade-up-5" style="display:flex;align-items:center;gap:16px;padding:20px 22px;border:2px solid #5BA4F5;border-radius:14px;text-decoration:none;transition:box-shadow 0.22s,transform 0.22s;box-shadow:0 2px 12px rgba(91,164,245,0.1);" onmouseover="this.style.boxShadow='0 8px 28px rgba(91,164,245,0.25)';this.style.transform='translateY(-2px)';" onmouseout="this.style.boxShadow='0 2px 12px rgba(91,164,245,0.1)';this.style.transform='translateY(0)';">
+            <div style="width:44px;height:44px;border-radius:10px;background:#EEF6FF;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5BA4F5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8 19.79 19.79 0 01.02 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+            </div>
+            <div>
+              <div style="font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:#9CA3AF;margin-bottom:3px;">Call us</div>
+              <div style="font-size:1rem;font-weight:600;color:#2D3547;">0478 022 067</div>
+            </div>
+          </a>
+
+          <p class="fade-up-6" style="font-size:0.8rem;color:#B4BAC6;line-height:1.6;margin-top:24px;text-align:center;">No commitment required. No credit check at this stage.</p>
+
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer style="background-color:#2D3547;border-top:1px solid rgba(255,255,255,0.07);padding:56px 24px 32px;">
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-10">
+      <div><div style="background:white;border-radius:10px;padding:10px 18px;display:inline-block;"><img src="assets/logo.png" alt="Lighter Finance" style="height:36px;width:auto;display:block;" /></div><p style="color:rgba(255,255,255,0.4);font-size:0.75rem;margin-top:12px;line-height:1.7;">For businesses wanting a lighter path to success.</p></div>
+      <nav style="display:flex;flex-wrap:wrap;gap:24px 32px;">
+        <a href="about.html" style="color:rgba(255,255,255,0.4);font-size:0.875rem;text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">About Us</a>
+        <a href="industries.html" style="color:rgba(255,255,255,0.4);font-size:0.875rem;text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">Industries</a>
+        <a href="about.html#team" style="color:rgba(255,255,255,0.4);font-size:0.875rem;text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">Meet Your Brokers</a>
+        <a href="apply.html" style="color:rgba(255,255,255,0.4);font-size:0.875rem;text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">Contact</a>
+      </nav>
+    </div>
+    <div class="max-w-6xl mx-auto" style="margin-top:40px;padding-top:24px;border-top:1px solid rgba(255,255,255,0.08);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;">
+      <p style="color:rgba(255,255,255,0.25);font-size:0.75rem;">© 2026 Lighter Finance Pty Ltd. All rights reserved.</p>
+      <p style="color:rgba(255,255,255,0.25);font-size:0.75rem;">Australian Credit Licence #000000</p>
+    </div>
+  </footer>
+
+  <script>
+    // Nav dropdowns
+    (function(){
+      function initDropdown(triggerId, dropdownId) {
+        var t = document.getElementById(triggerId), d = document.getElementById(dropdownId);
+        if (!t || !d) return;
+        t.addEventListener('click', function(e) {
+          e.stopPropagation();
+          var open = d.classList.contains('open');
+          document.querySelectorAll('.ind-dropdown.open').forEach(function(el){el.classList.remove('open');});
+          document.querySelectorAll('.ind-trigger.open').forEach(function(el){el.classList.remove('open');el.setAttribute('aria-expanded','false');});
+          if (!open) { t.classList.add('open'); d.classList.add('open'); t.setAttribute('aria-expanded','true'); }
+        });
+        document.addEventListener('click', function(e) {
+          if (!t.contains(e.target) && !d.contains(e.target)) { t.classList.remove('open'); d.classList.remove('open'); t.setAttribute('aria-expanded','false'); }
+        });
+        document.addEventListener('keydown', function(e) { if (e.key==='Escape') { t.classList.remove('open'); d.classList.remove('open'); } });
+      }
+      initDropdown('ind-trigger','ind-dropdown');
+      initDropdown('broker-trigger','broker-dropdown');
+    })();
+
+  </script>
+
+  <script>(function(){var pill=document.getElementById('nav-pill');var cursor=document.getElementById('nav-cursor');if(!pill||!cursor)return;var items=Array.from(pill.querySelectorAll('.nav-pill-item'));items.forEach(function(item){item.addEventListener('mouseenter',function(){var pr=pill.getBoundingClientRect();var ir=item.getBoundingClientRect();cursor.style.left=(ir.left-pr.left-2)+'px';cursor.style.width=ir.width+'px';cursor.style.opacity='1';});});pill.addEventListener('mouseleave',function(){cursor.style.opacity='0';});})();</script>
+</body>
+</html>
