@@ -288,6 +288,18 @@
     .nav-pill-item .ind-trigger{padding:8px 14px;color:#2D3547;font-size:0.875rem;font-weight:500;}
     .nav-pill-item .ind-trigger::after{display:none !important;}
     .nav-pill-item .ind-trigger:hover,.nav-pill-item .ind-trigger.open{color:#2D3547;}
+
+    /* ── FAQ accordion ── */
+    .faq-item{border-bottom:1px solid #E5E7EB;}
+    .faq-item:first-child{border-top:1px solid #E5E7EB;}
+    .faq-question{width:100%;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:24px 4px;background:none;border:none;text-align:left;font-family:'Roboto',sans-serif;font-size:1rem;font-weight:600;color:#2D3547;cursor:pointer;transition:color 0.18s;}
+    .faq-question:hover{color:#5BA4F5;}
+    .faq-question:focus-visible{outline:2px solid #5BA4F5;outline-offset:3px;border-radius:4px;}
+    .faq-chevron{flex-shrink:0;color:#5BA4F5;transition:transform 0.3s cubic-bezier(.4,0,.2,1);}
+    .faq-item.open .faq-chevron{transform:rotate(180deg);}
+    .faq-answer{max-height:0;overflow:hidden;transition:max-height 0.35s cubic-bezier(.4,0,.2,1);}
+    .faq-item.open .faq-answer{max-height:280px;}
+    .faq-answer p{padding:0 4px 24px;color:#6B7280;font-size:0.9375rem;line-height:1.75;max-width:640px;}
   </style>
 </head>
 <body class="bg-white text-ink font-sans">
@@ -302,7 +314,16 @@
         <ul class="nav-pill-wrap" id="nav-pill">
           <div class="nav-cursor" id="nav-cursor"></div>
           <li class="nav-pill-item"><a href="index.html" class="nav-pill-link">Home</a></li>
-          <li class="nav-pill-item"><a href="about.html" class="nav-pill-link">About Us</a></li>
+          <li class="nav-pill-item ind-wrap">
+            <button class="ind-trigger" id="about-trigger" aria-haspopup="true" aria-expanded="false">
+              About Us
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4l4 4 4-4"/></svg>
+            </button>
+            <div class="ind-dropdown" id="about-dropdown" role="menu">
+              <a href="about.html" role="menuitem"><span class="ind-dot"></span>Our Story</a>
+              <a href="about.html#faq" role="menuitem"><span class="ind-dot"></span>FAQs</a>
+            </div>
+          </li>
           <li class="nav-pill-item ind-wrap">
             <button class="ind-trigger" id="ind-trigger" aria-haspopup="true" aria-expanded="false">
               Industries
@@ -491,6 +512,69 @@
     </div>
   </section>
 
+  <!-- ─── FAQ ────────────────────────────────────────────────────────────── -->
+  <section class="bg-white" style="padding: 88px 24px;" id="faq">
+    <div style="max-width: 760px; margin: 0 auto;">
+      <p style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.13em; color: #5BA4F5; margin-bottom: 16px; text-align: center;">FAQ</p>
+      <h2 style="font-family: 'Roboto Slab', serif; font-size: 2rem; font-weight: 700; color: #2D3547; letter-spacing: -0.02em; margin-bottom: 14px; text-align: center;">Frequently Asked Questions</h2>
+      <p style="color: #6B7280; line-height: 1.75; font-size: 0.9375rem; text-align: center; max-width: 480px; margin: 0 auto 48px;">What do we hear most from our businesses.</p>
+
+      <div class="faq-list">
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span>Does it cost anything to use Lighter Finance?</span>
+            <svg class="faq-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-answer">
+            <p>Nothing, ever. We're paid a commission by the lender once your loan settles — not by you. You get our full panel and our expertise at $0 cost.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span>Will applying affect my credit score?</span>
+            <svg class="faq-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-answer">
+            <p>No. Your initial application is a soft enquiry only, so it won't appear on your credit file or affect your score. We only move to a formal application once you're happy with the options we've found.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span>How many lenders do you actually compare?</span>
+            <svg class="faq-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-answer">
+            <p>We work across a panel of 60+ lenders — major banks, non-banks, and specialist financiers. One application from you gets compared across all of them, instead of you approaching lenders one at a time.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span>How quickly will I hear back?</span>
+            <svg class="faq-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-answer">
+            <p>Usually within a few hours, often the same business day. We know timing matters when you're funding stock, equipment, or a growth opportunity.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span>What if my business is newer, or my credit isn't perfect?</span>
+            <svg class="faq-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-answer">
+            <p>That's exactly where our panel helps most. Alongside major banks, we work with specialist and non-bank lenders who look at your business's real trading performance, not just a credit score.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
   <!-- ─── FOOTER ─────────────────────────────────────────────────────────── -->
   <footer style="background-color: #2D3547; border-top: 1px solid rgba(255,255,255,0.07);" class="py-14 px-6">
     <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-10">
@@ -532,8 +616,23 @@
         document.addEventListener('click', function (e) { if (!trigger.contains(e.target) && !dropdown.contains(e.target)) close(); });
         document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
       }
+      initDropdown('about-trigger', 'about-dropdown');
       initDropdown('ind-trigger', 'ind-dropdown');
       initDropdown('broker-trigger', 'broker-dropdown');
+    })();
+  </script>
+
+  <script>
+    // FAQ accordion
+    (function () {
+      document.querySelectorAll('.faq-question').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var item = btn.closest('.faq-item');
+          var isOpen = item.classList.contains('open');
+          item.classList.toggle('open', !isOpen);
+          btn.setAttribute('aria-expanded', String(!isOpen));
+        });
+      });
     })();
   </script>
 
