@@ -292,47 +292,66 @@
 
       <!-- Form -->
       <div>
+        <div id="contact-form-wrap">
         <h2 class="font-serif font-bold text-ink mb-8" style="font-size: 1.5rem; letter-spacing: -0.02em;">Send us a message</h2>
-        <form style="display: flex; flex-direction: column; gap: 20px;">
+        <form id="contact-form" style="display: flex; flex-direction: column; gap: 20px;" novalidate>
+
+          <!-- Spam trap: leave empty, hidden from real users -->
+          <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
+          <input type="hidden" name="access_key" value="769bb7b3-cec4-4787-b319-405a53355b60">
+          <input type="hidden" name="subject" value="New Enquiry — Lighter Finance">
+          <input type="hidden" name="from_name" value="Lighter Finance Contact Page">
 
           <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
             <div>
               <label class="form-label" for="first-name">First Name</label>
-              <input class="form-input" type="text" id="first-name" placeholder="John" />
+              <input class="form-input" type="text" id="first-name" name="first_name" placeholder="John" required />
             </div>
             <div>
               <label class="form-label" for="last-name">Last Name</label>
-              <input class="form-input" type="text" id="last-name" placeholder="Smith" />
+              <input class="form-input" type="text" id="last-name" name="last_name" placeholder="Smith" required />
             </div>
           </div>
 
           <div>
             <label class="form-label" for="email">Email Address</label>
-            <input class="form-input" type="email" id="email" placeholder="you@yourbusiness.com.au" />
+            <input class="form-input" type="email" id="email" name="email" placeholder="you@yourbusiness.com.au" required />
           </div>
 
           <div>
             <label class="form-label" for="phone">Phone Number</label>
-            <input class="form-input" type="tel" id="phone" placeholder="04XX XXX XXX" />
+            <input class="form-input" type="tel" id="phone" name="phone" placeholder="04XX XXX XXX" required />
           </div>
 
           <div>
             <label class="form-label" for="loan-amount">Approximate Loan Amount</label>
-            <input class="form-input" type="text" id="loan-amount" placeholder="e.g. $75,000" />
+            <input class="form-input" type="text" id="loan-amount" name="loan_amount" placeholder="e.g. $75,000" required />
           </div>
 
           <div>
             <label class="form-label" for="industry">Industry</label>
-            <input class="form-input" type="text" id="industry" placeholder="e.g. Hospitality" />
+            <select class="form-input" id="industry" name="industry" required>
+              <option value="" disabled selected>Select your industry</option>
+              <option>Hospitality</option>
+              <option>Construction</option>
+              <option>Retail</option>
+              <option>Sole Traders</option>
+              <option>Professional Services</option>
+              <option>Plumbing</option>
+              <option>Transport</option>
+              <option>Other</option>
+            </select>
           </div>
 
           <div>
             <label class="form-label" for="message">Tell us about your situation <span style="color:#9CA3AF; font-weight:400;">(optional)</span></label>
-            <textarea class="form-input" id="message" placeholder="What are you looking to fund, and is there anything we should know upfront?"></textarea>
+            <textarea class="form-input" id="message" name="message" placeholder="What are you looking to fund, and is there anything we should know upfront?"></textarea>
           </div>
 
-          <button type="submit" class="anim-btn anim-btn-primary form-submit">
-            <span class="anim-text">Send Enquiry</span>
+          <p id="contact-error" role="alert" style="display:none; font-size: 0.8125rem; color: #DC5B5B; line-height: 1.5;"></p>
+
+          <button type="submit" class="anim-btn anim-btn-primary form-submit" id="contact-submit-btn">
+            <span class="anim-text" id="contact-submit-text">Send Enquiry</span>
             <i class="anim-icon">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
             </i>
@@ -343,6 +362,16 @@
           </p>
 
         </form>
+        </div>
+
+        <!-- Success state -->
+        <div id="contact-success-state" role="status" aria-live="polite" style="display:none; text-align:center; padding: 40px 0;">
+          <div style="width:64px; height:64px; border-radius:50%; background:#EEF6FF; display:flex; align-items:center; justify-content:center; margin:0 auto 24px;">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#5BA4F5" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <h2 class="font-serif font-bold text-ink mb-3" style="font-size: 1.375rem; letter-spacing: -0.02em;">Message received</h2>
+          <p class="text-muted" style="line-height: 1.75; max-width: 340px; margin: 0 auto;">Thanks — one of our brokers will review your details and be in touch shortly, usually within a few hours.</p>
+        </div>
       </div>
 
       <!-- Contact Info -->
@@ -442,6 +471,51 @@
       }
       initDropdown('ind-trigger', 'ind-dropdown');
       initDropdown('broker-trigger', 'broker-dropdown');
+    })();
+  </script>
+
+  <script>
+    // Contact form submission (Web3Forms)
+    (function(){
+      var form = document.getElementById('contact-form');
+      if (!form) return;
+      var btn = document.getElementById('contact-submit-btn');
+      var btnText = document.getElementById('contact-submit-text');
+      var errorEl = document.getElementById('contact-error');
+      var formWrap = document.getElementById('contact-form-wrap');
+      var successEl = document.getElementById('contact-success-state');
+
+      form.addEventListener('submit', function(e){
+        e.preventDefault();
+        errorEl.style.display = 'none';
+        btn.disabled = true;
+        btn.style.opacity = '0.7';
+        btnText.textContent = 'Sending…';
+
+        var data = Object.fromEntries(new FormData(form));
+
+        fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify(data)
+        })
+        .then(function(res){ return res.json(); })
+        .then(function(json){
+          if (json.success) {
+            formWrap.style.display = 'none';
+            successEl.style.display = 'block';
+          } else {
+            throw new Error(json.message || 'Something went wrong');
+          }
+        })
+        .catch(function(){
+          errorEl.textContent = 'Something went wrong sending your message — please try again, or email us directly at enquiries@lighterfinance.com.au.';
+          errorEl.style.display = 'block';
+          btn.disabled = false;
+          btn.style.opacity = '1';
+          btnText.textContent = 'Send Enquiry';
+        });
+      });
     })();
   </script>
 

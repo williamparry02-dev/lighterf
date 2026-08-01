@@ -219,38 +219,115 @@
 
     <!-- RIGHT PANEL: CONTACT -->
     <div style="background:#F7F9FB;display:flex;align-items:center;justify-content:center;padding:56px 48px;overflow-y:auto;">
-      <div style="width:100%;max-width:480px;">
+      <div style="width:100%;max-width:520px;">
 
         <div class="fade-up-1" style="background:#fff;border-radius:20px;padding:44px 40px;box-shadow:0 4px 32px rgba(45,53,71,0.08),0 1px 4px rgba(45,53,71,0.06);">
 
-          <h2 class="fade-up-2" style="font-family:'Roboto Slab',serif;font-size:1.5rem;font-weight:700;color:#2D3547;margin-bottom:14px;letter-spacing:-0.02em;">Get in touch</h2>
+          <!-- FORM STATE -->
+          <div id="apply-form-wrap">
+            <h2 class="fade-up-2" style="font-family:'Roboto Slab',serif;font-size:1.5rem;font-weight:700;color:#2D3547;margin-bottom:14px;letter-spacing:-0.02em;">Tell us about your business</h2>
 
-          <p class="fade-up-3" style="font-size:0.9375rem;color:#6B7280;line-height:1.75;margin-bottom:36px;">Send us an email with some basic information about yourself, your business, and your current situation — and we'll get back to you shortly with your options.</p>
+            <p class="fade-up-3" style="font-size:0.9375rem;color:#6B7280;line-height:1.75;margin-bottom:32px;">A few quick details and one of our brokers will be in touch — usually within a few hours.</p>
 
-          <!-- Email -->
-          <a href="mailto:enquiries@lighterfinance.com.au" class="fade-up-4" style="display:flex;align-items:center;gap:16px;padding:20px 22px;border:2px solid #5BA4F5;border-radius:14px;text-decoration:none;margin-bottom:16px;transition:box-shadow 0.22s,transform 0.22s;box-shadow:0 2px 12px rgba(91,164,245,0.1);" onmouseover="this.style.boxShadow='0 8px 28px rgba(91,164,245,0.25)';this.style.transform='translateY(-2px)';" onmouseout="this.style.boxShadow='0 2px 12px rgba(91,164,245,0.1)';this.style.transform='translateY(0)';">
-            <div style="width:44px;height:44px;border-radius:10px;background:#EEF6FF;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5BA4F5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <form id="apply-form" class="fade-up-4" novalidate>
+
+              <!-- Spam trap: leave empty, hidden from real users -->
+              <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
+              <input type="hidden" name="access_key" value="769bb7b3-cec4-4787-b319-405a53355b60">
+              <input type="hidden" name="subject" value="New Application — Lighter Finance">
+              <input type="hidden" name="from_name" value="Lighter Finance Apply Page">
+
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+                <div class="field-wrap">
+                  <label class="field-label" for="af-name">Full Name</label>
+                  <input class="field-input" type="text" id="af-name" name="full_name" placeholder="John Smith" required>
+                </div>
+                <div class="field-wrap">
+                  <label class="field-label" for="af-business">Business Name</label>
+                  <input class="field-input" type="text" id="af-business" name="business_name" placeholder="Smith Plumbing Pty Ltd" required>
+                </div>
+              </div>
+
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+                <div class="field-wrap">
+                  <label class="field-label" for="af-email">Email</label>
+                  <input class="field-input" type="email" id="af-email" name="email" placeholder="john@business.com.au" required>
+                </div>
+                <div class="field-wrap">
+                  <label class="field-label" for="af-phone">Phone</label>
+                  <input class="field-input" type="tel" id="af-phone" name="phone" placeholder="04XX XXX XXX" required>
+                </div>
+              </div>
+
+              <div class="field-wrap">
+                <label class="field-label" for="af-industry">Industry</label>
+                <select class="field-input field-select" id="af-industry" name="industry" required>
+                  <option value="" disabled selected>Select your industry</option>
+                  <option>Hospitality</option>
+                  <option>Construction</option>
+                  <option>Retail</option>
+                  <option>Sole Traders</option>
+                  <option>Professional Services</option>
+                  <option>Plumbing</option>
+                  <option>Transport</option>
+                  <option>Other</option>
+                </select>
+              </div>
+
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+                <div class="field-wrap">
+                  <label class="field-label" for="af-turnover">Annual Turnover</label>
+                  <div class="prefix-wrap">
+                    <span class="prefix-symbol">$</span>
+                    <input class="field-input" type="text" inputmode="numeric" id="af-turnover" name="annual_turnover" placeholder="500,000" required>
+                  </div>
+                </div>
+                <div class="field-wrap">
+                  <label class="field-label" for="af-amount">Loan Amount</label>
+                  <div class="prefix-wrap">
+                    <span class="prefix-symbol">$</span>
+                    <input class="field-input" type="text" inputmode="numeric" id="af-amount" name="loan_amount" placeholder="75,000" required>
+                  </div>
+                </div>
+              </div>
+
+              <div class="field-wrap" style="margin-bottom:8px;">
+                <label class="field-label" for="af-message">Anything else we should know? <span style="text-transform:none;font-weight:400;color:#B4BAC6;">(optional)</span></label>
+                <textarea class="field-input" style="height:88px;padding:12px 16px;resize:none;" id="af-message" name="message" placeholder="What are you looking to fund?"></textarea>
+              </div>
+
+              <p id="apply-error" role="alert" style="display:none;font-size:0.8125rem;color:#DC5B5B;margin-bottom:14px;line-height:1.5;"></p>
+
+              <button type="submit" class="submit-btn" id="apply-submit-btn">
+                <span id="apply-submit-text">Submit Application</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+              </button>
+
+              <p style="font-size:0.75rem;color:#B4BAC6;line-height:1.6;margin-top:16px;text-align:center;">No commitment required. No credit check at this stage.</p>
+            </form>
+          </div>
+
+          <!-- SUCCESS STATE -->
+          <div id="success-state" role="status" aria-live="polite" style="text-align:center;padding:24px 0;">
+            <div class="check-circle" style="width:64px;height:64px;border-radius:50%;background:#EEF6FF;display:flex;align-items:center;justify-content:center;margin:0 auto 24px;">
+              <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#5BA4F5" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
             </div>
-            <div>
-              <div style="font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:#9CA3AF;margin-bottom:3px;">Email us</div>
-              <div style="font-size:1rem;font-weight:600;color:#2D3547;">enquiries@lighterfinance.com.au</div>
-            </div>
+            <h2 style="font-family:'Roboto Slab',serif;font-size:1.375rem;font-weight:700;color:#2D3547;margin-bottom:10px;letter-spacing:-0.02em;">Application received</h2>
+            <p style="font-size:0.9375rem;color:#6B7280;line-height:1.75;max-width:340px;margin:0 auto;">Thanks — one of our brokers will review your details and be in touch shortly, usually within a few hours.</p>
+          </div>
+
+        </div>
+
+        <!-- Secondary contact -->
+        <div class="fade-up-5" style="display:flex;gap:12px;margin-top:16px;">
+          <a href="mailto:enquiries@lighterfinance.com.au" style="flex:1;display:flex;align-items:center;gap:10px;padding:14px 16px;background:#fff;border:1.5px solid #E5E7EB;border-radius:12px;text-decoration:none;transition:border-color 0.18s,box-shadow 0.18s;" onmouseover="this.style.borderColor='#5BA4F5';this.style.boxShadow='0 4px 16px rgba(91,164,245,0.14)';" onmouseout="this.style.borderColor='#E5E7EB';this.style.boxShadow='none';">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5BA4F5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <span style="font-size:0.8125rem;font-weight:600;color:#2D3547;">Email us</span>
           </a>
-
-          <!-- Phone -->
-          <a href="tel:0478022067" class="fade-up-5" style="display:flex;align-items:center;gap:16px;padding:20px 22px;border:2px solid #5BA4F5;border-radius:14px;text-decoration:none;transition:box-shadow 0.22s,transform 0.22s;box-shadow:0 2px 12px rgba(91,164,245,0.1);" onmouseover="this.style.boxShadow='0 8px 28px rgba(91,164,245,0.25)';this.style.transform='translateY(-2px)';" onmouseout="this.style.boxShadow='0 2px 12px rgba(91,164,245,0.1)';this.style.transform='translateY(0)';">
-            <div style="width:44px;height:44px;border-radius:10px;background:#EEF6FF;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5BA4F5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8 19.79 19.79 0 01.02 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
-            </div>
-            <div>
-              <div style="font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:#9CA3AF;margin-bottom:3px;">Call us</div>
-              <div style="font-size:1rem;font-weight:600;color:#2D3547;">0478 022 067</div>
-            </div>
+          <a href="tel:0478022067" style="flex:1;display:flex;align-items:center;gap:10px;padding:14px 16px;background:#fff;border:1.5px solid #E5E7EB;border-radius:12px;text-decoration:none;transition:border-color 0.18s,box-shadow 0.18s;" onmouseover="this.style.borderColor='#5BA4F5';this.style.boxShadow='0 4px 16px rgba(91,164,245,0.14)';" onmouseout="this.style.borderColor='#E5E7EB';this.style.boxShadow='none';">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5BA4F5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8 19.79 19.79 0 01.02 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+            <span style="font-size:0.8125rem;font-weight:600;color:#2D3547;">Call us</span>
           </a>
-
-          <p class="fade-up-6" style="font-size:0.8rem;color:#B4BAC6;line-height:1.6;margin-top:24px;text-align:center;">No commitment required. No credit check at this stage.</p>
-
         </div>
 
       </div>
@@ -296,6 +373,51 @@
       initDropdown('broker-trigger','broker-dropdown');
     })();
 
+  </script>
+
+  <script>
+    // Apply form submission (Web3Forms)
+    (function(){
+      var form = document.getElementById('apply-form');
+      if (!form) return;
+      var btn = document.getElementById('apply-submit-btn');
+      var btnText = document.getElementById('apply-submit-text');
+      var errorEl = document.getElementById('apply-error');
+      var formWrap = document.getElementById('apply-form-wrap');
+      var successEl = document.getElementById('success-state');
+
+      form.addEventListener('submit', function(e){
+        e.preventDefault();
+        errorEl.style.display = 'none';
+        btn.disabled = true;
+        btn.style.opacity = '0.7';
+        btnText.textContent = 'Sending…';
+
+        var data = Object.fromEntries(new FormData(form));
+
+        fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify(data)
+        })
+        .then(function(res){ return res.json(); })
+        .then(function(json){
+          if (json.success) {
+            formWrap.style.display = 'none';
+            successEl.style.display = 'block';
+          } else {
+            throw new Error(json.message || 'Something went wrong');
+          }
+        })
+        .catch(function(){
+          errorEl.textContent = 'Something went wrong sending your application — please try again, or email us directly at enquiries@lighterfinance.com.au.';
+          errorEl.style.display = 'block';
+          btn.disabled = false;
+          btn.style.opacity = '1';
+          btnText.textContent = 'Submit Application';
+        });
+      });
+    })();
   </script>
 
   <script>(function(){var pill=document.getElementById('nav-pill');var cursor=document.getElementById('nav-cursor');if(!pill||!cursor)return;var items=Array.from(pill.querySelectorAll('.nav-pill-item'));items.forEach(function(item){item.addEventListener('mouseenter',function(){var pr=pill.getBoundingClientRect();var ir=item.getBoundingClientRect();cursor.style.left=(ir.left-pr.left-2)+'px';cursor.style.width=ir.width+'px';cursor.style.opacity='1';});});pill.addEventListener('mouseleave',function(){cursor.style.opacity='0';});})();</script>
