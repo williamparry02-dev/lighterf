@@ -315,25 +315,73 @@
     }
     .feat-icon svg { color: #5BA4F5; }
 
-    /* Finance type intro cards */
-    .finance-type-card {
-      background: #F4F9FF;
-      border-radius: 20px;
-      padding: 32px 28px;
+    /* Finance type hover-reveal cards */
+    .reveal-card {
+      position: relative;
       display: flex;
       flex-direction: column;
-      gap: 16px;
-      transition: transform 0.25s, box-shadow 0.25s;
+      height: 320px;
+      cursor: pointer;
+      overflow: hidden;
+      border-radius: 18px;
+      background: #F4F9FF;
+      border: 1.5px solid rgba(91,164,245,0.16);
+      text-decoration: none;
+      box-shadow: 0 10px 28px rgba(45,53,71,0.12);
+      transition: transform 0.5s cubic-bezier(.34,1.56,.64,1), opacity 0.45s cubic-bezier(.4,0,.2,1), filter 0.45s cubic-bezier(.4,0,.2,1), box-shadow 0.45s cubic-bezier(.4,0,.2,1), border-color 0.45s ease;
     }
-    .finance-type-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(91,164,245,0.18); }
-    .finance-pill-btn {
-      display: inline-flex; align-items: center; justify-content: center;
-      height: 46px; padding: 0 28px; border-radius: 999px;
-      border: 2px solid #5BA4F5; color: #5BA4F5; font-weight: 700; font-size: 0.875rem;
-      text-decoration: none; align-self: flex-start;
-      transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+    .reveal-grid:hover .reveal-card { transform: scale(0.97); opacity: 0.55; filter: blur(2px); }
+    .reveal-card:hover, .reveal-card:focus-visible {
+      transform: scale(1.04) !important;
+      opacity: 1 !important;
+      filter: blur(0) !important;
+      box-shadow: 0 18px 40px rgba(91,164,245,0.28) !important;
+      border-color: rgba(91,164,245,0.45) !important;
     }
-    .finance-pill-btn:hover { background: #5BA4F5; color: #fff; box-shadow: 0 6px 20px rgba(91,164,245,0.35); }
+    .reveal-card:focus-visible { outline: 2px solid #5BA4F5; outline-offset: 3px; }
+    .reveal-card-image { flex: 1; background-size: contain; background-position: center; background-repeat: no-repeat; margin: 12px 12px 0; }
+    .reveal-card-content { padding: 4px 20px 20px; min-height: 90px; }
+    .reveal-card-subtitle { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: #5BA4F5; margin-bottom: 4px; }
+    .reveal-card-title { font-family: 'Roboto Slab', serif; font-size: 1.05rem; font-weight: 700; letter-spacing: -0.01em; line-height: 1.3; color: #2D3547; }
+
+    /* Flow button (hero Apply Now) */
+    .flow-btn {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      overflow: hidden;
+      border-radius: 100px;
+      border: 1.5px solid rgba(45,53,71,0.4);
+      background: transparent;
+      padding: 15px 34px;
+      font-family: 'Roboto', sans-serif;
+      font-size: 0.9375rem;
+      font-weight: 700;
+      color: #2D3547;
+      text-decoration: none;
+      cursor: pointer;
+      transition: border-color 0.6s cubic-bezier(.23,1,.32,1), color 0.6s cubic-bezier(.23,1,.32,1), border-radius 0.6s cubic-bezier(.23,1,.32,1);
+    }
+    .flow-btn:hover { border-color: transparent; color: #fff; border-radius: 12px; }
+    .flow-btn:active { transform: scale(0.95); }
+    .flow-btn-arrow { position: absolute; width: 16px; height: 16px; color: #2D3547; z-index: 2; transition: all 0.8s cubic-bezier(.34,1.56,.64,1); }
+    .flow-btn-arrow-left { left: -25%; }
+    .flow-btn:hover .flow-btn-arrow-left { left: 16px; color: #fff; }
+    .flow-btn-arrow-right { right: 16px; }
+    .flow-btn:hover .flow-btn-arrow-right { right: -25%; color: #fff; }
+    .flow-btn-text { position: relative; z-index: 1; transform: translateX(-12px); transition: transform 0.8s ease; }
+    .flow-btn:hover .flow-btn-text { transform: translateX(12px); }
+    .flow-btn-circle {
+      position: absolute; top: 50%; left: 50%;
+      width: 16px; height: 16px;
+      background: #2D3547;
+      border-radius: 50%;
+      opacity: 0;
+      transform: translate(-50%, -50%);
+      transition: width 0.8s cubic-bezier(.19,1,.22,1), height 0.8s cubic-bezier(.19,1,.22,1), opacity 0.8s cubic-bezier(.19,1,.22,1);
+    }
+    .flow-btn:hover .flow-btn-circle { width: 220px; height: 220px; opacity: 1; }
     .feat-card {
       transition: transform 0.25s, box-shadow 0.25s;
       box-shadow: 0 4px 20px rgba(91,164,245,0.12);
@@ -586,20 +634,14 @@
             <span style="text-align: right; padding-right: 0.15em;">Lighter</span><span class="hero-word-wrap" style="text-align: left; padding-left: 0.15em;"><span id="cycling-word">Finance</span></span>
           </h1>
           <p class="text-muted" style="font-size: 1.0625rem; line-height: 1.75; max-width: 860px; margin: 0 0 32px 0;">
-            Strike while opportunity is hot. Our streamlined process delivers business funding in hours, not weeks. Quick applications, instant decisions, immediate access to capital from $5K&nbsp;&ndash;&nbsp;$500K.
+            We understand each businesses situation and search, compare, and negotiate to find you the best finance options available.
           </p>
           <div style="display: flex; gap: 12px; flex-wrap: wrap; align-items: center; justify-content: center;">
-            <a href="apply.html" class="anim-btn anim-btn-primary">
-              <span class="anim-text">Apply Now</span>
-              <i class="anim-icon">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-              </i>
-            </a>
-            <a href="apply.html" class="anim-btn anim-btn-outline">
-              <span class="anim-text">Get Indicative Offers</span>
-              <i class="anim-icon">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-              </i>
+            <a href="apply.html" class="flow-btn">
+              <svg class="flow-btn-arrow flow-btn-arrow-left" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              <span class="flow-btn-text">Apply Now</span>
+              <span class="flow-btn-circle"></span>
+              <svg class="flow-btn-arrow flow-btn-arrow-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
             </a>
           </div>
         </div>
@@ -608,48 +650,57 @@
     </div>
   </section>
 
-  </div><!-- /blue zone (hero only) -->
+  <!-- ─── FINANCE TYPE INTRO CARDS (hover-reveal) ────────────────────────── -->
+  <section class="pt-12 pb-4 px-6" style="position: relative; z-index: 1;">
+    <div class="reveal-grid max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
 
-  <!-- ─── FINANCE TYPE INTRO CARDS ───────────────────────────────────────── -->
-  <section class="bg-white pt-12 pb-4 px-6">
-    <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
-
-      <div class="finance-type-card">
-        <div class="feat-icon" style="margin-bottom:0;">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4l6 8-6 8"/><path d="M13 4l6 8-6 8"/></svg>
+      <a href="apply.html" class="reveal-card" aria-label="Fast Unsecured Business Loans — Apply Now">
+        <div class="reveal-card-image" style="background-image:url('assets/Unsecuredart.png');"></div>
+        <div class="reveal-card-content">
+          <p class="reveal-card-subtitle">Unsecured Lending</p>
+          <h3 class="reveal-card-title">Fast Unsecured Business Loans</h3>
         </div>
-        <h3 class="font-serif font-bold" style="color:#5BA4F5; font-size:1.2rem; letter-spacing:-0.01em;">Fast Unsecured Business Loans</h3>
-        <p class="text-muted" style="font-size:0.9375rem; line-height:1.7; flex:1;">Borrow up to $300,000 with no assets required. Decisions in hours, not weeks.</p>
-        <a href="apply.html" class="finance-pill-btn">Apply Now</a>
-      </div>
+      </a>
 
-      <div class="finance-type-card">
-        <div class="feat-icon" style="margin-bottom:0;">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a2 2 0 012 2 2 2 0 002 2h1a2 2 0 012 2v1a2 2 0 002 2 2 2 0 010 4 2 2 0 00-2 2v1a2 2 0 01-2 2h-1a2 2 0 00-2 2 2 2 0 01-4 0 2 2 0 00-2-2H9a2 2 0 01-2-2v-1a2 2 0 00-2-2 2 2 0 010-4 2 2 0 002-2V8a2 2 0 012-2h1a2 2 0 002-2 2 2 0 012-1z"/></svg>
+      <a href="apply.html" class="reveal-card" aria-label="Tailored Secured Loans — Apply Now">
+        <div class="reveal-card-image" style="background-image:url('assets/Tailoredart.png');"></div>
+        <div class="reveal-card-content">
+          <p class="reveal-card-subtitle">Secured Lending</p>
+          <h3 class="reveal-card-title">Tailored Secured Loans</h3>
         </div>
-        <h3 class="font-serif font-bold" style="color:#5BA4F5; font-size:1.2rem; letter-spacing:-0.01em;">Tailored Secured Loans</h3>
-        <p class="text-muted" style="font-size:0.9375rem; line-height:1.7; flex:1;">Need more? Secured lending unlocks larger amounts with flexible terms built around your business.</p>
-        <a href="apply.html" class="finance-pill-btn">Explore Options</a>
-      </div>
+      </a>
 
-      <div class="finance-type-card">
-        <div class="feat-icon" style="margin-bottom:0;">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h10M4 7a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0zM20 7h-2M4 12h2M8 12a1.5 1.5 0 103 0 1.5 1.5 0 00-3 0zm3 0h9M4 17h10m4 0a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zm-3 0H4"/></svg>
+      <a href="apply.html" class="reveal-card" aria-label="Equipment and Vehicle Finance — Apply Now">
+        <div class="reveal-card-image" style="background-image:url('assets/Vehicleart.png');"></div>
+        <div class="reveal-card-content">
+          <p class="reveal-card-subtitle">Asset Finance</p>
+          <h3 class="reveal-card-title">Equipment &amp; Vehicle Finance</h3>
         </div>
-        <h3 class="font-serif font-bold" style="color:#5BA4F5; font-size:1.2rem; letter-spacing:-0.01em;">Equipment &amp; Vehicle Finance</h3>
-        <p class="text-muted" style="font-size:0.9375rem; line-height:1.7; flex:1;">Upgrade vehicles, machinery, or tech without straining cash flow. Fast approvals, flexible terms.</p>
-        <a href="apply.html" class="finance-pill-btn">Customize Your Loan</a>
+      </a>
+
+      <div class="reveal-card" style="cursor:default;">
+        <div class="reveal-card-image" style="background-image:url('assets/Card4.png');"></div>
+        <div class="reveal-card-content">
+          <p class="reveal-card-subtitle">Personal Loans</p>
+          <h3 class="reveal-card-title">Non Business-Related Finance</h3>
+        </div>
       </div>
 
     </div>
   </section>
 
-  <!-- ─── LIGHTEN THE LOAD ───────────────────────────────────────────────── -->
-  <section class="bg-white pt-16 pb-10 px-6 text-center">
+  <!-- ─── LIGHTEN THE LOAD (heading) ─────────────────────────────────────── -->
+  <section class="pt-16 pb-14 px-6 text-center" style="position: relative; z-index: 1;">
     <h2 class="font-serif font-bold text-ink mb-4" style="font-size: 2.1rem; letter-spacing: -0.02em;">Lighten the Load</h2>
-    <p class="text-muted" style="font-size: 1.0625rem; max-width: 560px; margin: 0 auto 48px; line-height: 1.75;">
+    <p class="text-muted" style="font-size: 1.0625rem; max-width: 560px; margin: 0 auto; line-height: 1.75;">
       Accessing finance for your business has never been quicker, easier and cheaper.
     </p>
+  </section>
+
+  </div><!-- /blue zone (hero + finance cards + lighten the load intro) -->
+
+  <!-- ─── LIGHTEN THE LOAD (content) ─────────────────────────────────────── -->
+  <section class="bg-white pt-12 pb-10 px-6">
     <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center text-left">
 
       <img src="assets/art2.png" alt="Stress-free business finance"
