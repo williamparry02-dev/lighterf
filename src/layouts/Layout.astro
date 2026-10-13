@@ -42,6 +42,16 @@ const { language, textDirection } = I18N;
 
     <link rel="preconnect" href="https://images.unsplash.com" />
 
+    <!-- Refreshing a page starts back at the top instead of restoring the old scroll position.
+         Runs before ClientRouter, which otherwise scrolls to the position saved in history.state. -->
+    <script is:inline>
+      if (performance.getEntriesByType('navigation')[0]?.type === 'reload') {
+        history.scrollRestoration = 'manual';
+        if (history.state) history.replaceState({ ...history.state, scrollX: 0, scrollY: 0 }, '');
+        addEventListener('load', () => scrollTo({ left: 0, top: 0, behavior: 'instant' }));
+      }
+    </script>
+
     <!-- Comment the line below to disable View Transitions -->
     <ClientRouter fallback="swap" />
 
