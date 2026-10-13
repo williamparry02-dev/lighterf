@@ -10,8 +10,6 @@ export const business = {
   email: 'enquiries@lighterfinance.com.au',
   hours: 'Mon to Fri, 8am to 6pm AEST',
   location: 'Sydney, NSW. Servicing clients Australia-wide.',
-  // TODO: replace with your real licence or credit representative number before going live.
-  creditLicence: 'Australian Credit Licence #000000',
 
   // Web3Forms key used by the Apply and Contact forms (the same key as the old site).
   // Submissions are emailed to the address registered with this key.

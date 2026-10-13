@@ -5,6 +5,22 @@ import { business } from './data/business';
 export const headerData = {
   links: [
     {
+      text: 'Business finance',
+      links: [
+        { text: 'Unsecured business loans', href: getPermalink('/#finance') },
+        { text: 'Secured business loans', href: getPermalink('/#finance') },
+        { text: 'Equipment and vehicle finance', href: getPermalink('/#finance') },
+        { text: 'Apply now', href: getPermalink('/apply') },
+      ],
+    },
+    {
+      text: 'Personal finance',
+      links: [
+        { text: 'Personal loans', href: getPermalink('/contact') },
+        { text: 'Caravan loans', href: getPermalink('/contact') },
+      ],
+    },
+    {
       text: 'About us',
       links: [
         { text: 'Our story', href: getPermalink('/about') },
@@ -22,7 +38,14 @@ export const headerData = {
     { text: 'Contact', href: getPermalink('/contact') },
   ],
   actions: [
-    { text: business.phone, href: business.phoneHref, variant: 'tertiary' as const, icon: 'tabler:phone' },
+    {
+      text: business.phone,
+      href: business.phoneHref,
+      variant: 'tertiary' as const,
+      icon: 'tabler:phone',
+      // Hidden on laptop widths so the five nav menus fit; the hero's Call button covers it there.
+      class: 'hidden xl:inline-flex',
+    },
     { text: 'Apply now', href: getPermalink('/apply'), variant: 'primary' as const },
   ],
 };
@@ -46,5 +69,5 @@ export const footerData = {
   ],
   secondaryLinks: [{ text: 'Privacy policy', href: getPermalink('/privacy') }],
   socialLinks: [],
-  footNote: `© ${new Date().getFullYear()} ${business.legalName}. All rights reserved. ${business.creditLicence}.`,
+  footNote: `© ${new Date().getFullYear()} ${business.legalName}. All rights reserved.`,
 };

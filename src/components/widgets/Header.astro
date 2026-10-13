@@ -109,7 +109,7 @@ const persistKey = `header-${Array.from(
                   <>
                     <button
                       type="button"
-                      class="hover:text-link dark:hover:text-white px-4 py-3 flex items-center whitespace-nowrap"
+                      class="hover:text-link dark:hover:text-white px-4 lg:px-2 xl:px-4 py-3 flex items-center whitespace-nowrap"
                     >
                       {text}{' '}
                       <Icon
@@ -136,7 +136,7 @@ const persistKey = `header-${Array.from(
                 ) : (
                   <a
                     class:list={[
-                      'hover:text-link dark:hover:text-white px-4 py-3 flex items-center whitespace-nowrap',
+                      'hover:text-link dark:hover:text-white px-4 lg:px-2 xl:px-4 py-3 flex items-center whitespace-nowrap',
                       { 'aw-link-active': isActive(href) },
                     ]}
                     href={href}
@@ -174,7 +174,10 @@ const persistKey = `header-${Array.from(
             actions?.length ? (
               <span class="ml-4 rtl:ml-0 rtl:mr-4">
                 {actions.map((btnProps) => (
-                  <Button {...btnProps} class="ml-2 py-2.5 px-5.5 lg:px-6 font-semibold shadow-none text-sm w-auto" />
+                  <Button
+                    {...btnProps}
+                    class={`ml-2 py-2.5 px-5.5 lg:px-6 font-semibold shadow-none text-sm w-auto ${btnProps.class ?? ''}`}
+                  />
                 ))}
               </span>
             ) : (

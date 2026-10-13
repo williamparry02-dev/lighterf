@@ -83,7 +83,7 @@ const structuredData = [
           <Icon name="tabler:circle-check" class="h-5 w-5 text-primary" /> $0 broker fees
         </li>
         <li class="flex items-center gap-2">
-          <Icon name="tabler:circle-check" class="h-5 w-5 text-primary" /> Soft credit check only
+          <Icon name="tabler:circle-check" class="h-5 w-5 text-primary" /> Same Day Offers
         </li>
         <li class="flex items-center gap-2">
           <Icon name="tabler:circle-check" class="h-5 w-5 text-primary" /> 60+ lenders compared
@@ -149,6 +149,28 @@ const structuredData = [
     </Fragment>
   </Projects>
 
+  <!-- Industries -->
+  <Features2
+    id="industries"
+    title="Finance tailored to your industry"
+    subtitle="Every industry has different cash flow, seasons and lending challenges. We match you with lenders who specialise in yours."
+    columns={4}
+    items={[
+      ...industries.map((industry) => ({
+        title: industry.name,
+        description: industry.audience,
+        icon: industry.icon,
+        href: getPermalink(`/${industry.slug}`),
+      })),
+      {
+        title: 'Something else?',
+        description: 'Most businesses fit our panel. Tell us about yours.',
+        icon: 'tabler:message-circle',
+        href: getPermalink('/contact'),
+      },
+    ]}
+  />
+
   <!-- How it works -->
   <Steps
     id="how-it-works"
@@ -181,7 +203,11 @@ const structuredData = [
       alt: 'A business owner completing an online application',
       aspect: 'auto',
     }}
-  />
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-sky"></div>
+    </Fragment>
+  </Steps>
 
   <!-- What makes us different -->
   <Content
@@ -238,28 +264,6 @@ const structuredData = [
       { amount: '$0', title: 'Upfront broker fees' },
       { amount: '7', title: 'Industries we specialise in' },
       { amount: '1 day', title: 'Typical turnaround' },
-    ]}
-  />
-
-  <!-- Industries -->
-  <Features2
-    id="industries"
-    title="Finance tailored to your industry"
-    subtitle="Every industry has different cash flow, seasons and lending challenges. We match you with lenders who specialise in yours."
-    columns={4}
-    items={[
-      ...industries.map((industry) => ({
-        title: industry.name,
-        description: industry.audience,
-        icon: industry.icon,
-        href: getPermalink(`/${industry.slug}`),
-      })),
-      {
-        title: 'Something else?',
-        description: 'Most businesses fit our panel. Tell us about yours.',
-        icon: 'tabler:message-circle',
-        href: getPermalink('/contact'),
-      },
     ]}
   />
 
