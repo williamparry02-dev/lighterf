@@ -1,0 +1,94 @@
+---
+import { Icon } from 'astro-icon/components';
+import Logo from '~/components/Logo.astro';
+import { getHomePermalink } from '~/utils/permalinks';
+import { business } from '~/data/business';
+
+interface Link {
+  text?: string;
+  href?: string;
+  ariaLabel?: string;
+  icon?: string;
+}
+
+interface Links {
+  title?: string;
+  links: Array<Link>;
+}
+
+export interface Props {
+  links: Array<Links>;
+  secondaryLinks: Array<Link>;
+  socialLinks: Array<Link>;
+  footNote?: string;
+  theme?: string;
+}
+
+const { secondaryLinks = [], links = [], footNote = '' } = Astro.props;
+
+const contact = [
+  { icon: 'tabler:phone', text: business.phone, href: business.phoneHref },
+  { icon: 'tabler:mail', text: business.email, href: `mailto:${business.email}` },
+  { icon: 'tabler:clock', text: business.hours },
+  { icon: 'tabler:map-pin', text: business.location },
+];
+---
+
+<footer class="relative bg-navy text-slate-300 not-prose">
+  <div class="relative max-w-7xl mx-auto px-4 sm:px-6">
+    <div class="grid grid-cols-12 gap-y-10 gap-x-8 py-12 md:py-16">
+      <div class="col-span-12 lg:col-span-5">
+        <a class="inline-block" href={getHomePermalink()} aria-label="Lighter Finance home">
+          <Logo variant="white" class="h-10 w-auto" />
+        </a>
+        <p class="mt-4 max-w-sm text-slate-300">{business.tagline}</p>
+        <ul class="mt-6 space-y-3 text-sm">
+          {
+            contact.map(({ icon, text, href }) => (
+              <li class="flex items-start gap-3">
+                <Icon name={icon} class="mt-0.5 h-5 w-5 shrink-0 text-accent" />
+                {href ? (
+                  <a class="hover:text-white hover:underline" href={href}>
+                    {text}
+                  </a>
+                ) : (
+                  <span>{text}</span>
+                )}
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+      {
+        links.map(({ title, links }) => (
+          <nav class="col-span-6 lg:col-span-3" aria-label={title}>
+            <h2 class="mb-4 font-heading text-base font-semibold text-white">{title}</h2>
+            <ul class="space-y-2.5 text-sm">
+              {links.map(({ text, href, ariaLabel }) => (
+                <li>
+                  <a class="hover:text-white hover:underline" href={href} aria-label={ariaLabel}>
+                    <Fragment set:html={text} />
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        ))
+      }
+    </div>
+    <div
+      class="flex flex-col gap-3 border-t border-white/15 py-6 text-sm text-slate-400 md:flex-row md:items-center md:justify-between"
+    >
+      <p set:html={footNote} />
+      <ul class="flex gap-4">
+        {
+          secondaryLinks.map(({ text, href }) => (
+            <li>
+              <a class="hover:text-white hover:underline" href={href} set:html={text} />
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</footer>

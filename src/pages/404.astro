@@ -1,0 +1,16 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import HeroText from '~/components/widgets/HeroText.astro';
+import { getHomePermalink, getPermalink } from '~/utils/permalinks';
+
+const metadata = { title: 'Page not found', robots: { index: false, follow: false } };
+---
+
+<Layout metadata={metadata}>
+  <HeroText
+    title="We couldn’t find that page"
+    subtitle="It may have moved. Head back to the homepage, or start an application."
+    callToAction={{ variant: 'primary', text: 'Back to home', href: getHomePermalink() }}
+    callToAction2={{ text: 'Apply now', href: getPermalink('/apply') }}
+  />
+</Layout>

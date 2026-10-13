@@ -1,0 +1,70 @@
+site:
+  name: Lighter Finance
+  site: 'https://lighterfinance.com.au'
+  base: '/'
+  trailingSlash: false
+
+  googleSiteVerificationId: null
+
+# Default SEO metadata
+metadata:
+  title:
+    default: Lighter Finance – Finance, Made Lighter
+    template: '%s | Lighter Finance'
+  description: 'Fast business finance with $0 broker fees. We compare 60+ lenders to find the right loan for your business. Apply online today.'
+  robots:
+    index: true
+    follow: true
+  openGraph:
+    site_name: Lighter Finance
+    images:
+      - url: '~/assets/images/brand/og-default.png'
+        width: 1200
+        height: 630
+    type: website
+  twitter:
+    cardType: summary_large_image
+
+i18n:
+  language: en-AU
+  textDirection: ltr
+
+apps:
+  blog:
+    isEnabled: false
+    postsPerPage: 8
+
+    post:
+      isEnabled: false
+      permalink: '/%slug%'
+      robots:
+        index: true
+
+    list:
+      isEnabled: false
+      pathname: 'blog'
+      robots:
+        index: true
+
+    category:
+      isEnabled: false
+      pathname: 'category'
+      robots:
+        index: true
+
+    tag:
+      isEnabled: false
+      pathname: 'tag'
+      robots:
+        index: false
+
+    isRelatedPostsEnabled: false
+    relatedPostsCount: 4
+
+analytics:
+  vendors:
+    googleAnalytics:
+      id: null # or "G-XXXXXXXXXX"
+
+ui:
+  theme: 'light:only'

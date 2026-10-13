@@ -1,0 +1,319 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+
+import Hero2 from '~/components/widgets/Hero2.astro';
+import Features from '~/components/widgets/Features.astro';
+import Features2 from '~/components/widgets/Features2.astro';
+import Projects from '~/components/widgets/Projects.astro';
+import Content from '~/components/widgets/Content.astro';
+import Steps from '~/components/widgets/Steps.astro';
+import Stats from '~/components/widgets/Stats.astro';
+import Testimonials from '~/components/widgets/Testimonials.astro';
+import FAQs from '~/components/widgets/FAQs.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+import StructuredData from '~/components/common/StructuredData.astro';
+import { Icon } from 'astro-icon/components';
+
+import { getPermalink } from '~/utils/permalinks';
+import { industries } from '~/data/industries';
+import { business, faqs, testimonials } from '~/data/business';
+
+const metadata = {
+  title: 'Lighter Finance – Finance, Made Lighter',
+  ignoreTitleTemplate: true,
+  description:
+    'Fast business finance with $0 broker fees. We compare 60+ lenders to find the right loan for your business. Apply online today.',
+};
+
+const applyHref = getPermalink('/apply');
+
+const structuredData = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FinancialService',
+    '@id': 'https://lighterfinance.com.au/#organization',
+    name: business.name,
+    url: 'https://lighterfinance.com.au',
+    logo: 'https://lighterfinance.com.au/icon-512.png',
+    description:
+      'Australian business finance brokerage comparing 60+ lenders to find unsecured business loans, equipment finance and working capital for SMEs.',
+    telephone: '+61478022067',
+    email: business.email,
+    address: { '@type': 'PostalAddress', addressLocality: 'Sydney', addressRegion: 'NSW', addressCountry: 'AU' },
+    areaServed: { '@type': 'Country', name: 'Australia' },
+    openingHours: 'Mo-Fr 08:00-18:00',
+  },
+];
+---
+
+<Layout metadata={metadata}>
+  <StructuredData slot="head" schema={structuredData} />
+
+  <!-- Hero: the one bold moment. "Lighter ___" cycles through what we take off your plate. -->
+  <Hero2
+    actions={[
+      { variant: 'primary', text: 'Apply now', href: applyHref },
+      { text: `Call ${business.phone}`, href: business.phoneHref, icon: 'tabler:phone' },
+    ]}
+    image={{
+      src: '~/assets/images/art/hero-feather.png',
+      alt: 'A business owner watching paperwork float away, lifted by a feather',
+      aspect: 'auto',
+    }}
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-sky"></div>
+    </Fragment>
+    <Fragment slot="title">
+      <span class="sr-only">Lighter Finance: lighter paperwork, less stress, better rates</span>
+      <span aria-hidden="true" class="block text-6xl md:text-7xl xl:text-8xl leading-[0.95]">
+        <span class="block">Lighter</span>
+        <span class="block text-primary" data-cycle="Finance,Paperwork,Stress,Rates">Finance</span>
+      </span>
+    </Fragment>
+    <Fragment slot="subtitle">
+      We get to know your business, then search, compare and negotiate across 60+ lenders to find you the best finance
+      available.
+    </Fragment>
+    <Fragment slot="content">
+      <ul
+        class="mt-8 flex flex-col items-center gap-x-6 gap-y-2 text-sm font-medium text-heading sm:flex-row sm:justify-center lg:justify-start"
+      >
+        <li class="flex items-center gap-2">
+          <Icon name="tabler:circle-check" class="h-5 w-5 text-primary" /> $0 broker fees
+        </li>
+        <li class="flex items-center gap-2">
+          <Icon name="tabler:circle-check" class="h-5 w-5 text-primary" /> Soft credit check only
+        </li>
+        <li class="flex items-center gap-2">
+          <Icon name="tabler:circle-check" class="h-5 w-5 text-primary" /> 60+ lenders compared
+        </li>
+      </ul>
+    </Fragment>
+  </Hero2>
+
+  <!-- Lighten the load: what you get, at a glance -->
+  <Features
+    id="lighten-the-load"
+    title="Lighten the load"
+    subtitle="Accessing finance for your business has never been quicker, easier or cheaper. No surprises, just transparency and speed."
+    columns={4}
+    classes={{ container: 'max-w-6xl' }}
+    items={[
+      { title: 'Fully unsecured', description: 'No assets required.', icon: 'tabler:lock-open' },
+      { title: 'Low documentation', description: 'Easy approvals.', icon: 'tabler:file-text' },
+      { title: 'Quick funding', description: 'Enquire today, get funded tonight.', icon: 'tabler:bolt' },
+      { title: 'Multiple offers', description: 'Compare the best offers available.', icon: 'tabler:list-check' },
+    ]}
+  />
+
+  <!-- Finance types -->
+  <Projects
+    id="finance"
+    title="Finance for every part of your business"
+    subtitle="Tell us what you need it for. We’ll find the lender that fits."
+    columns={4}
+    items={[
+      {
+        title: 'Fast unsecured business loans',
+        description: 'Grow with funding from our full lender panel, while keeping your assets safe.',
+        image: { src: '~/assets/images/art/unsecured.png', alt: '' },
+        href: applyHref,
+        linkText: 'Apply now',
+      },
+      {
+        title: 'Tailored secured loans',
+        description: 'Larger amounts structured around your property or business assets.',
+        image: { src: '~/assets/images/art/secured.png', alt: '' },
+        href: applyHref,
+        linkText: 'Apply now',
+      },
+      {
+        title: 'Equipment and vehicle finance',
+        description: 'Utes, trucks, vans, machinery and tools for the work you do.',
+        image: { src: '~/assets/images/art/equipment-vehicle.png', alt: '' },
+        href: applyHref,
+        linkText: 'Apply now',
+      },
+      {
+        title: 'Non business-related finance',
+        description: 'Personal loans, including caravan loans, from the same panel of lenders.',
+        image: { src: '~/assets/images/art/personal.png', alt: '' },
+        href: getPermalink('/contact'),
+        linkText: 'Talk to us',
+      },
+    ]}
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-sky"></div>
+    </Fragment>
+  </Projects>
+
+  <!-- How it works -->
+  <Steps
+    id="how-it-works"
+    title="From application to funded in as little as one day"
+    subtitle="No endless paperwork. No branch visits. A straightforward process built for busy business owners."
+    items={[
+      {
+        title: 'Apply online',
+        description: 'Tell us about your business and what it needs, and we’ll match you with the right lender.',
+        icon: 'tabler:number-1',
+      },
+      {
+        title: 'Receive approval',
+        description: 'We compare 60+ lenders and come back with your best options, in as little as 30 minutes.',
+        icon: 'tabler:number-2',
+      },
+      {
+        title: 'Get funded same day',
+        description: 'Accept your offer, sign the documents, and the funds land in your account within the day.',
+        icon: 'tabler:number-3',
+      },
+      {
+        title: 'Funded',
+        icon: 'tabler:check',
+      },
+    ]}
+    callToAction={{ text: 'Start your application', href: applyHref }}
+    image={{
+      src: '~/assets/images/art/apply-online.png',
+      alt: 'A business owner completing an online application',
+      aspect: 'auto',
+    }}
+  />
+
+  <!-- What makes us different -->
+  <Content
+    id="why-us"
+    isReversed
+    title="What makes us different?"
+    subtitle="A broker in your corner, not a sales pitch."
+    items={[
+      {
+        title: 'We protect your credit score',
+        description:
+          'We run a single soft enquiry to explore your options, protecting your credit file while still giving you access to our full panel of 60+ lenders.',
+        icon: 'tabler:shield-check',
+      },
+      {
+        title: 'We do the legwork',
+        description:
+          'We compare lenders and handle the paperwork, so you don’t spend hours on hold or filling out forms.',
+        icon: 'tabler:briefcase',
+      },
+      {
+        title: 'Smarter finance, not sales pitches',
+        description:
+          'We don’t recommend what earns us the highest commission. We recommend what genuinely fits your situation and budget.',
+        icon: 'tabler:scale',
+      },
+      {
+        title: 'Fast, friendly and hassle-free',
+        description: 'Most applications are turned around within the day, from first chat to final approval.',
+        icon: 'tabler:bolt',
+      },
+      {
+        title: 'Real people, real help',
+        description: 'You’ll always speak to a real person who knows your file. No bots, no call centres.',
+        icon: 'tabler:users-group',
+      },
+    ]}
+    image={{
+      src: '~/assets/images/art/climbing-stairs-blue.png',
+      alt: 'A business owner climbing a staircase towards a growth chart',
+      aspect: 'auto',
+    }}
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-sky"></div>
+    </Fragment>
+  </Content>
+
+  <!-- Numbers -->
+  <Stats
+    isDark
+    stats={[
+      { amount: '60+', title: 'Lenders on our panel' },
+      { amount: '$0', title: 'Upfront broker fees' },
+      { amount: '7', title: 'Industries we specialise in' },
+      { amount: '1 day', title: 'Typical turnaround' },
+    ]}
+  />
+
+  <!-- Industries -->
+  <Features2
+    id="industries"
+    title="Finance tailored to your industry"
+    subtitle="Every industry has different cash flow, seasons and lending challenges. We match you with lenders who specialise in yours."
+    columns={4}
+    items={[
+      ...industries.map((industry) => ({
+        title: industry.name,
+        description: industry.audience,
+        icon: industry.icon,
+        href: getPermalink(`/${industry.slug}`),
+      })),
+      {
+        title: 'Something else?',
+        description: 'Most businesses fit our panel. Tell us about yours.',
+        icon: 'tabler:message-circle',
+        href: getPermalink('/contact'),
+      },
+    ]}
+  />
+
+  <!-- Reviews -->
+  <Testimonials id="reviews" title="What our clients say" testimonials={testimonials.map((t) => ({ ...t, rating: 5 }))}>
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-sky"></div>
+    </Fragment>
+  </Testimonials>
+
+  <!-- FAQs -->
+  <FAQs id="faq" title="Questions we hear every week" items={faqs} schema />
+
+  <!-- Close -->
+  <CallToAction
+    title="Ready to lighten the load?"
+    subtitle="Applying takes two minutes and won’t touch your credit score. One of our brokers will be in touch within a few hours."
+    actions={[
+      { variant: 'primary', text: 'Apply now', href: applyHref },
+      { text: `Call ${business.phone}`, href: business.phoneHref, icon: 'tabler:phone' },
+    ]}
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-sky"></div>
+    </Fragment>
+  </CallToAction>
+</Layout>
+
+<script>
+  // Cycle the hero word: Lighter Finance → Paperwork → Stress → Rates.
+  // Skipped entirely for people who prefer reduced motion.
+  function startCycle() {
+    const el = document.querySelector<HTMLElement>('[data-cycle]');
+    if (!el || el.dataset.cycling || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    el.dataset.cycling = 'true';
+    const words = (el.dataset.cycle || '').split(',');
+    let i = 0;
+    el.style.display = 'inline-block';
+    el.style.transition = 'transform 380ms cubic-bezier(.4,0,.2,1), opacity 300ms';
+    const timer = window.setInterval(() => {
+      if (!document.body.contains(el)) return window.clearInterval(timer);
+      el.style.transform = 'translateY(-0.35em)';
+      el.style.opacity = '0';
+      window.setTimeout(() => {
+        i = (i + 1) % words.length;
+        el.textContent = words[i];
+        el.style.transition = 'none';
+        el.style.transform = 'translateY(0.35em)';
+        void el.offsetWidth;
+        el.style.transition = 'transform 380ms cubic-bezier(.4,0,.2,1), opacity 300ms';
+        el.style.transform = 'translateY(0)';
+        el.style.opacity = '1';
+      }, 320);
+    }, 2600);
+  }
+  document.addEventListener('astro:page-load', startCycle);
+</script>

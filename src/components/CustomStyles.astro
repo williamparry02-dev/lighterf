@@ -1,0 +1,58 @@
+---
+// Lighter Finance brand tokens.
+// Fonts come from Astro's Fonts API (see `fonts` in astro.config.ts).
+//
+//   Navy     #2D3547  headings, footer, dark bands
+//   Blue     #4D99FA  the logo blue: icons, illustrations, highlights on navy
+//   Action   #1D6AD0  a deeper shade of the logo blue for buttons and links
+//                     (white text on it passes WCAG AA; on #4D99FA it would not)
+//   Sky      #EDF4FE  section tint; matches the background of the blue illustrations
+//   Muted    #56606F  secondary text
+---
+
+<style is:inline>
+  :root {
+    --aw-font-sans: var(--font-roboto);
+    --aw-font-serif: var(--font-roboto-slab);
+    --aw-font-heading: var(--font-roboto-slab);
+
+    --aw-color-primary: rgb(29 106 208);
+    --aw-color-secondary: rgb(23 88 176);
+    --aw-color-accent: rgb(77 153 250);
+
+    --aw-color-navy: rgb(45 53 71);
+    --aw-color-sky: rgb(237 244 254);
+    --aw-color-line: rgb(220 230 242);
+
+    --aw-color-text-heading: rgb(45 53 71);
+    --aw-color-text-default: rgb(52 61 79);
+    --aw-color-text-muted: rgb(86 96 111);
+    --aw-color-bg-page: rgb(255 255 255);
+
+    --aw-color-bg-page-dark: rgb(45 53 71);
+
+    ::selection {
+      background-color: rgb(77 153 250 / 30%);
+    }
+  }
+
+  .dark {
+    --aw-font-sans: var(--font-roboto);
+    --aw-font-serif: var(--font-roboto-slab);
+    --aw-font-heading: var(--font-roboto-slab);
+
+    --aw-color-primary: rgb(77 153 250);
+    --aw-color-secondary: rgb(120 178 252);
+    --aw-color-accent: rgb(77 153 250);
+
+    --aw-color-text-heading: rgb(255 255 255);
+    --aw-color-text-default: rgb(226 232 242);
+    --aw-color-text-muted: rgb(197 207 222);
+    --aw-color-bg-page: rgb(45 53 71);
+
+    ::selection {
+      background-color: rgb(77 153 250 / 40%);
+      color: white;
+    }
+  }
+</style>

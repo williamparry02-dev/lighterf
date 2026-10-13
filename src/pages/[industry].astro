@@ -1,0 +1,75 @@
+---
+// One page per industry (hospitality.html, construction.html…). The text lives in src/data/industries.ts.
+import Layout from '~/layouts/PageLayout.astro';
+import Hero2 from '~/components/widgets/Hero2.astro';
+import Features2 from '~/components/widgets/Features2.astro';
+import Content from '~/components/widgets/Content.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+
+import { getPermalink } from '~/utils/permalinks';
+import { industries, type Industry } from '~/data/industries';
+import { business } from '~/data/business';
+
+export function getStaticPaths() {
+  return industries.map((industry) => ({ params: { industry: industry.slug }, props: { industry } }));
+}
+
+const { industry } = Astro.props as { industry: Industry };
+
+const metadata = {
+  title: `${industry.name} finance`,
+  description: industry.metaDescription,
+};
+
+const applyHref = getPermalink('/apply');
+---
+
+<Layout metadata={metadata}>
+  <Hero2
+    title={industry.title}
+    subtitle={industry.intro}
+    actions={[
+      { variant: 'primary', text: 'Apply now', href: applyHref },
+      { text: `Call ${business.phone}`, href: business.phoneHref, icon: 'tabler:phone' },
+    ]}
+    image={{ src: industry.heroImage, alt: industry.heroImageAlt, aspect: 'auto' }}
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-sky"></div>
+    </Fragment>
+  </Hero2>
+
+  <Features2
+    id="finance-options"
+    title={`Common financing needs in ${industry.name.toLowerCase()}`}
+    columns={industry.needs.length % 3 === 0 ? 3 : 4}
+    items={industry.needs}
+  />
+
+  <Content
+    title={industry.helpTitle}
+    isReversed
+    image={{ src: industry.helpImage, alt: '', aspect: 'auto' }}
+    callToAction={{ text: 'Get in touch', href: getPermalink('/contact') }}
+  >
+    <Fragment slot="content">
+      <p class="mb-12">{industry.helpText}</p>
+    </Fragment>
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-sky"></div>
+    </Fragment>
+  </Content>
+
+  <CallToAction
+    title={industry.ctaTitle}
+    subtitle={industry.ctaText}
+    actions={[
+      { variant: 'primary', text: 'Apply now', href: applyHref },
+      { text: `Call ${business.phone}`, href: business.phoneHref, icon: 'tabler:phone' },
+    ]}
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-white"></div>
+    </Fragment>
+  </CallToAction>
+</Layout>

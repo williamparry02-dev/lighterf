@@ -1,0 +1,130 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import Content from '~/components/widgets/Content.astro';
+import Features from '~/components/widgets/Features.astro';
+import Team from '~/components/widgets/Team.astro';
+import Features3 from '~/components/widgets/Features3.astro';
+import FAQs from '~/components/widgets/FAQs.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+
+import { getPermalink } from '~/utils/permalinks';
+import { business, brokers, faqs } from '~/data/business';
+
+const metadata = {
+  title: 'About us',
+  description:
+    'Lighter Finance is a Sydney business finance brokerage on a mission to give businesses a lighter path to funding. Meet the team and the principles we work by.',
+};
+
+// Initials stand in for headshots until real photos are added.
+const initials = (name: string) =>
+  `<span class="mx-auto flex h-32 w-32 items-center justify-center rounded-full bg-sky font-heading text-4xl font-semibold text-primary md:h-36 md:w-36" aria-hidden="true">${name.charAt(0)}</span>`;
+---
+
+<Layout metadata={metadata}>
+  <Hero
+    title="Our mission: a lighter path to funding"
+    subtitle="Finance should give businesses the freedom to grow, not the burden of stress."
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-sky"></div>
+    </Fragment>
+  </Hero>
+
+  <Content
+    title="Why we started Lighter Finance"
+    image={{
+      src: '~/assets/images/art/feather-trolley.png',
+      alt: 'A business owner wheeling paperwork away as a feather lifts the load',
+      aspect: 'auto',
+    }}
+  >
+    <Fragment slot="content">
+      <p class="mb-4">
+        Our goal is to simplify the process, help businesses make smarter choices, and create outcomes they can feel
+        confident about. When finance works the right way, it changes everything.
+      </p>
+      <p>
+        We started Lighter Finance because business owners deserve a broker genuinely in their corner: one who knows
+        what lenders want to see and how to get applications across the line. Not one chasing the highest commission.
+      </p>
+    </Fragment>
+  </Content>
+
+  <Features
+    id="principles"
+    title="Principles we stand by"
+    subtitle="Everything we do comes back to these three commitments. They’re the standard we hold ourselves to on every deal."
+    columns={3}
+    items={[
+      {
+        title: 'We put our clients’ needs first',
+        description: 'Every decision starts with what’s best for you, not what earns us the highest commission.',
+        icon: 'tabler:heart-handshake',
+      },
+      {
+        title: 'We believe in smarter finance',
+        description: 'We use our inside knowledge of lenders to find solutions most brokers can’t access or navigate.',
+        icon: 'tabler:bulb',
+      },
+      {
+        title: 'We keep things as simple as possible',
+        description: 'We explain everything clearly so you always know where you stand. No jargon, no confusion.',
+        icon: 'tabler:list-check',
+      },
+    ]}
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-sky"></div>
+    </Fragment>
+  </Features>
+
+  <Team
+    id="team"
+    title="Meet your brokers"
+    subtitle="You’ll always deal with a real person who knows your file."
+    members={brokers.map((broker) => ({ name: broker.name, role: broker.role, image: initials(broker.name) }))}
+  />
+
+  <Features3
+    id="lenders"
+    title="60+ lenders, one application"
+    subtitle="More lenders, more options, better finance. We work across the market to unlock options most businesses never see."
+    columns={2}
+    classes={{ container: 'max-w-4xl' }}
+    items={[
+      { title: 'Major banks', description: 'Including the big four.', icon: 'tabler:building-bank' },
+      {
+        title: 'Non-bank lenders',
+        description: 'Lenders who assess your real trading performance, not just a credit score.',
+        icon: 'tabler:building',
+      },
+      {
+        title: 'Specialist finance',
+        description: 'For newer businesses and less straightforward situations.',
+        icon: 'tabler:target',
+      },
+      {
+        title: 'Equipment lenders',
+        description: 'Asset specialists for vehicles, machinery and equipment.',
+        icon: 'tabler:forklift',
+      },
+    ]}
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-sky"></div>
+    </Fragment>
+  </Features3>
+
+  <FAQs id="faq" title="Frequently asked questions" items={faqs} schema />
+
+  <CallToAction
+    title="Let’s find the right finance for your business"
+    subtitle={`Apply online in two minutes, or call us on ${business.phone}.`}
+    actions={[
+      { variant: 'primary', text: 'Apply now', href: getPermalink('/apply') },
+      { text: 'Contact us', href: getPermalink('/contact') },
+    ]}
+  />
+</Layout>

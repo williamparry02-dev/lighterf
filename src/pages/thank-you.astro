@@ -1,0 +1,20 @@
+---
+// Shown when a form is sent without JavaScript (Web3Forms redirects here).
+import Layout from '~/layouts/PageLayout.astro';
+import HeroText from '~/components/widgets/HeroText.astro';
+import { getHomePermalink } from '~/utils/permalinks';
+import { business } from '~/data/business';
+
+const metadata = {
+  title: 'Thanks, we’ve got your details',
+  robots: { index: false, follow: false },
+};
+---
+
+<Layout metadata={metadata}>
+  <HeroText
+    title="Thanks, we’ve got your details"
+    subtitle={`One of our brokers will review them and be in touch, usually within a few hours. If it’s urgent, call us on ${business.phone}.`}
+    callToAction={{ variant: 'primary', text: 'Back to home', href: getHomePermalink() }}
+  />
+</Layout>

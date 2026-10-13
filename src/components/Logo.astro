@@ -1,0 +1,22 @@
+---
+import { Image } from 'astro:assets';
+import logo from '~/assets/images/brand/logo.png';
+import logoWhite from '~/assets/images/brand/logo-white.png';
+
+export interface Props {
+  variant?: 'default' | 'white';
+  class?: string;
+}
+
+const { variant = 'default', class: className = 'h-9 w-auto md:h-10' } = Astro.props;
+---
+
+<Image
+  src={variant === 'white' ? logoWhite : logo}
+  alt="Lighter Finance"
+  class={className}
+  height={80}
+  densities={[1, 2]}
+  loading="eager"
+  format="webp"
+/>

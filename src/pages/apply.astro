@@ -1,0 +1,71 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import LeadForm from '~/components/LeadForm.astro';
+import { Icon } from 'astro-icon/components';
+import { business } from '~/data/business';
+
+const metadata = {
+  title: 'Apply now',
+  description:
+    'Apply for business finance in two minutes. We compare 60+ lenders with a soft credit check only and $0 broker fees. Hear back within the day.',
+};
+
+const reasons = [
+  { icon: 'tabler:building-bank', title: '60+ lender partners', text: 'We compare across the market for you.' },
+  { icon: 'tabler:clock', title: 'Response within the day', text: 'Often the same day during business hours.' },
+  { icon: 'tabler:coin', title: '$0 broker fees to you', text: 'We’re paid by the lender, not you.' },
+];
+---
+
+<Layout metadata={metadata}>
+  <section class="relative not-prose">
+    <div class="absolute inset-0 bg-sky" aria-hidden="true"></div>
+    <div class="relative mx-auto max-w-7xl px-4 py-12 sm:px-6 md:py-20">
+      <div class="grid gap-10 lg:grid-cols-12 lg:gap-16">
+        <div class="lg:col-span-5 lg:pt-6">
+          <h1 class="font-heading text-4xl font-bold tracking-tight text-heading md:text-5xl">
+            Let’s find the right funding for your business
+          </h1>
+          <p class="mt-4 text-lg text-muted">
+            Fill in the short form and one of our brokers will be in touch, usually within a few hours.
+          </p>
+          <ul class="mt-8 space-y-5">
+            {
+              reasons.map(({ icon, title, text }) => (
+                <li class="flex gap-4">
+                  <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white text-primary shadow-sm">
+                    <Icon name={icon} class="h-6 w-6" />
+                  </span>
+                  <span>
+                    <span class="block font-semibold text-heading">{title}</span>
+                    <span class="block text-muted">{text}</span>
+                  </span>
+                </li>
+              ))
+            }
+          </ul>
+          <p class="mt-8 text-sm text-muted">
+            Prefer to talk? Call{' '}
+            <a class="font-semibold text-primary hover:underline" href={business.phoneHref}>{business.phone}</a> or email{
+              ' '
+            }
+            <a class="font-semibold text-primary hover:underline" href={`mailto:${business.email}`}>{business.email}</a
+            >.
+          </p>
+        </div>
+        <div class="lg:col-span-7">
+          <div class="rounded-2xl bg-white p-6 shadow-xl shadow-navy/5 ring-1 ring-line sm:p-10">
+            <h2 class="font-heading text-2xl font-semibold text-heading">Tell us about your business</h2>
+            <p class="mb-6 mt-1 text-muted">It takes about two minutes. Your information is private and secure.</p>
+            <LeadForm
+              variant="apply"
+              subject="New Application — Lighter Finance"
+              fromName="Lighter Finance Apply Page"
+              button="Submit application"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

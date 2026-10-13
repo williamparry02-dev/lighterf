@@ -1,0 +1,92 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import Features2 from '~/components/widgets/Features2.astro';
+import Content from '~/components/widgets/Content.astro';
+import Stats from '~/components/widgets/Stats.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+
+import { getPermalink } from '~/utils/permalinks';
+import { industries } from '~/data/industries';
+import { business } from '~/data/business';
+
+const metadata = {
+  title: 'Industries we finance',
+  description:
+    'Business finance tailored to hospitality, construction, retail, sole traders, professional services, plumbing and transport. 60+ lenders, $0 broker fees.',
+};
+---
+
+<Layout metadata={metadata}>
+  <Hero
+    title="Finance tailored to your industry"
+    subtitle="Every industry has different cash flow patterns, seasonal pressures and lending challenges. We understand each sector and match you with lenders who specialise in yours."
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-sky"></div>
+    </Fragment>
+  </Hero>
+
+  <Features2
+    columns={4}
+    items={[
+      ...industries.map((industry) => ({
+        title: industry.name,
+        description: `<span class="block text-sm font-medium text-heading mb-1">${industry.audience}</span>${industry.summary}`,
+        icon: industry.icon,
+        href: getPermalink(`/${industry.slug}`),
+      })),
+      {
+        title: 'Something else?',
+        description:
+          '<span class="block text-sm font-medium text-heading mb-1">Every other business</span>Most businesses fit our panel. Tell us about yours and we’ll find the lenders who suit it.',
+        icon: 'tabler:message-circle',
+        href: getPermalink('/contact'),
+      },
+    ]}
+  />
+
+  <Content
+    title="Industry knowledge changes everything"
+    isReversed
+    image={{
+      src: '~/assets/images/art/climbing-stairs-blue.png',
+      alt: 'A business owner climbing a staircase towards a growth chart',
+      aspect: 'auto',
+    }}
+    callToAction={{ text: 'Talk to a specialist', href: getPermalink('/contact') }}
+  >
+    <Fragment slot="content">
+      <p class="mb-4">
+        A generic broker puts your application in front of every lender on their panel and hopes for the best. We know
+        which lenders actively want your industry, what they look at, and how to frame your application to get it
+        approved.
+      </p>
+      <p class="mb-12">
+        That means faster approvals, better rates, and no unnecessary credit hits from lenders who were never going to
+        say yes.
+      </p>
+    </Fragment>
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-sky"></div>
+    </Fragment>
+  </Content>
+
+  <Stats
+    stats={[
+      { amount: '60+', title: 'Lenders on our panel' },
+      { amount: '7', title: 'Industries served' },
+      { amount: '1 day', title: 'Typical turnaround' },
+      { amount: '$0', title: 'Upfront broker fees' },
+    ]}
+  />
+
+  <CallToAction
+    title="Not sure which option suits your industry?"
+    subtitle="Let’s talk. We’ll point you to the finance that fits."
+    actions={[
+      { variant: 'primary', text: 'Apply now', href: getPermalink('/apply') },
+      { text: `Call ${business.phone}`, href: business.phoneHref, icon: 'tabler:phone' },
+    ]}
+  />
+</Layout>
