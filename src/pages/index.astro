@@ -16,6 +16,7 @@ import { Icon } from 'astro-icon/components';
 
 import { getPermalink } from '~/utils/permalinks';
 import { industries } from '~/data/industries';
+import { financeHref } from '~/data/finance';
 import { business, faqs, testimonials } from '~/data/business';
 
 const metadata = {
@@ -49,7 +50,7 @@ const structuredData = [
 <Layout metadata={metadata}>
   <StructuredData slot="head" schema={structuredData} />
 
-  <!-- Hero: the one bold moment. "Lighter ___" cycles through what we take off your plate. -->
+  <!-- Hero: the one bold moment. "Lighter ___" steps through what we take off your plate as you scroll. -->
   <Hero2
     actions={[
       { variant: 'primary', text: 'Apply now', href: applyHref },
@@ -118,29 +119,29 @@ const structuredData = [
         title: 'Fast unsecured business loans',
         description: 'Grow with funding from our full lender panel, while keeping your assets safe.',
         image: { src: '~/assets/images/art/unsecured.png', alt: '' },
-        href: applyHref,
-        linkText: 'Apply now',
+        href: getPermalink(financeHref('unsecured-business-loans')),
+        linkText: 'Learn more',
       },
       {
         title: 'Tailored secured loans',
         description: 'Larger amounts structured around your property or business assets.',
         image: { src: '~/assets/images/art/secured.png', alt: '' },
-        href: applyHref,
-        linkText: 'Apply now',
+        href: getPermalink(financeHref('secured-business-loans')),
+        linkText: 'Learn more',
       },
       {
         title: 'Equipment and vehicle finance',
         description: 'Utes, trucks, vans, machinery and tools for the work you do.',
         image: { src: '~/assets/images/art/equipment-vehicle.png', alt: '' },
-        href: applyHref,
-        linkText: 'Apply now',
+        href: getPermalink(financeHref('equipment-and-vehicle-finance')),
+        linkText: 'Learn more',
       },
       {
         title: 'Non business-related finance',
         description: 'Personal loans, including caravan loans, from the same panel of lenders.',
         image: { src: '~/assets/images/art/personal.png', alt: '' },
-        href: getPermalink('/contact'),
-        linkText: 'Talk to us',
+        href: getPermalink(financeHref('personal-loans')),
+        linkText: 'Learn more',
       },
     ]}
   >
@@ -262,7 +263,7 @@ const structuredData = [
     stats={[
       { amount: '60+', title: 'Lenders on our panel' },
       { amount: '$0', title: 'Upfront broker fees' },
-      { amount: '7', title: 'Industries we specialise in' },
+      { amount: '100+', title: 'Businesses funded' },
       { amount: '1 day', title: 'Typical turnaround' },
     ]}
   />
@@ -293,31 +294,79 @@ const structuredData = [
 </Layout>
 
 <script>
-  // Cycle the hero word: Lighter Finance → Paperwork → Stress → Rates.
-  // Skipped entirely for people who prefer reduced motion.
+  // Scroll-driven hero word: Lighter Finance → Paperwork → Stress → Rates as the heading scrolls
+  // off screen, and back again in reverse on the way up. Reduced motion swaps words without animating.
   function startCycle() {
     const el = document.querySelector<HTMLElement>('[data-cycle]');
-    if (!el || el.dataset.cycling || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (!el || el.dataset.cycling) return;
     el.dataset.cycling = 'true';
     const words = (el.dataset.cycle || '').split(',');
-    let i = 0;
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const ease = 'transform 380ms cubic-bezier(.4,0,.2,1), opacity 300ms';
+    const STEP = 70;
     el.style.display = 'inline-block';
-    el.style.transition = 'transform 380ms cubic-bezier(.4,0,.2,1), opacity 300ms';
-    const timer = window.setInterval(() => {
-      if (!document.body.contains(el)) return window.clearInterval(timer);
-      el.style.transform = 'translateY(-0.35em)';
+    el.style.transition = ease;
+
+    let current = 0;
+    let swapTimer = 0;
+    let ticking = false;
+    let end = 1; // scroll position at which the word has fully left the screen
+
+    const measure = () => {
+      end = Math.max(1, el.getBoundingClientRect().bottom + window.scrollY);
+    };
+
+    const show = (next: number) => {
+      if (next === current) return;
+      const down = next > current;
+      current = next;
+      window.clearTimeout(swapTimer);
+      if (reduceMotion) {
+        el.textContent = words[next];
+        return;
+      }
+      // Scrolling down: old word exits up, new one rises from below. Scrolling up: the reverse.
+      el.style.transition = ease;
+      el.style.transform = `translateY(${down ? -0.35 : 0.35}em)`;
       el.style.opacity = '0';
-      window.setTimeout(() => {
-        i = (i + 1) % words.length;
-        el.textContent = words[i];
+      swapTimer = window.setTimeout(() => {
+        el.textContent = words[current];
         el.style.transition = 'none';
-        el.style.transform = 'translateY(0.35em)';
+        el.style.transform = `translateY(${down ? 0.35 : -0.35}em)`;
         void el.offsetWidth;
-        el.style.transition = 'transform 380ms cubic-bezier(.4,0,.2,1), opacity 300ms';
+        el.style.transition = ease;
         el.style.transform = 'translateY(0)';
         el.style.opacity = '1';
-      }, 320);
-    }, 2600);
+      }, 200);
+    };
+
+    const update = () => {
+      ticking = false;
+      if (!document.body.contains(el)) return cleanup();
+      // A new word every STEP px of scroll, compressed further if the heading would leave the screen first.
+      const step = Math.min(STEP, end / words.length);
+      show(Math.min(words.length - 1, Math.max(0, Math.floor(window.scrollY / step))));
+    };
+
+    const onScroll = () => {
+      if (!ticking) {
+        ticking = true;
+        window.requestAnimationFrame(update);
+      }
+    };
+    const onResize = () => {
+      measure();
+      onScroll();
+    };
+    const cleanup = () => {
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onResize);
+    };
+
+    measure();
+    update();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onResize);
   }
   document.addEventListener('astro:page-load', startCycle);
 </script>

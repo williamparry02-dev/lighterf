@@ -1,24 +1,20 @@
 import { getPermalink } from './utils/permalinks';
 import { industries } from './data/industries';
 import { business } from './data/business';
+import { businessFinance, personalFinance, financeHref } from './data/finance';
 
 export const headerData = {
   links: [
     {
       text: 'Business finance',
       links: [
-        { text: 'Unsecured business loans', href: getPermalink('/#finance') },
-        { text: 'Secured business loans', href: getPermalink('/#finance') },
-        { text: 'Equipment and vehicle finance', href: getPermalink('/#finance') },
+        ...businessFinance.map((p) => ({ text: p.name, href: getPermalink(financeHref(p.slug)) })),
         { text: 'Apply now', href: getPermalink('/apply') },
       ],
     },
     {
       text: 'Personal finance',
-      links: [
-        { text: 'Personal loans', href: getPermalink('/contact') },
-        { text: 'Caravan loans', href: getPermalink('/contact') },
-      ],
+      links: personalFinance.map((p) => ({ text: p.name, href: getPermalink(financeHref(p.slug)) })),
     },
     {
       text: 'About us',
@@ -52,6 +48,10 @@ export const headerData = {
 
 export const footerData = {
   links: [
+    {
+      title: 'Finance',
+      links: [...businessFinance, ...personalFinance].map((p) => ({ text: p.name, href: getPermalink(financeHref(p.slug)) })),
+    },
     {
       title: 'Industries',
       links: industries.map((industry) => ({ text: industry.name, href: getPermalink(`/${industry.slug}`) })),

@@ -1,0 +1,122 @@
+---
+// One page per finance product (/finance/unsecured-business-loans.html…). The text lives in src/data/finance.ts.
+// No rates or amounts on these pages: the "Want to know your rate?" section sends people to call or email.
+import Layout from '~/layouts/PageLayout.astro';
+import Hero2 from '~/components/widgets/Hero2.astro';
+import Features2 from '~/components/widgets/Features2.astro';
+import Content from '~/components/widgets/Content.astro';
+import FAQs from '~/components/widgets/FAQs.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+
+import { getPermalink } from '~/utils/permalinks';
+import { financeProducts, financeHref, type FinanceProduct } from '~/data/finance';
+import { industries } from '~/data/industries';
+import { business } from '~/data/business';
+
+export function getStaticPaths() {
+  return financeProducts.map((product) => ({ params: { product: product.slug }, props: { product } }));
+}
+
+const { product } = Astro.props as { product: FinanceProduct };
+
+const metadata = {
+  title: product.name,
+  description: product.metaDescription,
+};
+
+// The Apply form is built for businesses, so personal finance enquiries go to Contact instead.
+const primaryAction =
+  product.group === 'business'
+    ? { variant: 'primary' as const, text: 'Apply now', href: getPermalink('/apply') }
+    : { variant: 'primary' as const, text: 'Enquire now', href: getPermalink('/contact') };
+const callAction = { text: `Call ${business.phone}`, href: business.phoneHref, icon: 'tabler:phone' };
+
+const alternative = financeProducts.find((p) => p.slug === product.alternative.slug);
+const relatedIndustries = industries.filter((industry) => product.industries.includes(industry.slug));
+const otherProducts = financeProducts.filter((p) => p.slug !== product.slug);
+---
+
+<Layout metadata={metadata}>
+  <Hero2
+    title={product.title}
+    subtitle={product.intro}
+    actions={[primaryAction, callAction]}
+    image={{ src: product.heroImage, alt: product.heroImageAlt, aspect: 'auto' }}
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-sky"></div>
+    </Fragment>
+  </Hero2>
+
+  <Features2 id="uses" title="What you can use it for" columns={4} items={product.uses} />
+
+  <Content
+    id="is-it-right"
+    title={product.suitsTitle}
+    isReversed
+    items={product.suits}
+    image={{ src: '~/assets/images/art/feather-trolley.png', alt: '', aspect: 'auto' }}
+    callToAction={alternative && { text: `Explore ${alternative.name.toLowerCase()}`, href: getPermalink(financeHref(alternative.slug)) }}
+  >
+    <Fragment slot="content">
+      <p class="mb-8 text-muted">{product.alternative.text}</p>
+    </Fragment>
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-sky"></div>
+    </Fragment>
+  </Content>
+
+  <CallToAction
+    title="Want to know your rate?"
+    subtitle={`Every ${product.group === 'business' ? 'business' : 'situation'} is different, so we don’t publish one-size-fits-all numbers. Call or email and one of our brokers will give you a straight answer, with no obligation.`}
+    actions={[callAction, { text: `Email ${business.email}`, href: `mailto:${business.email}`, icon: 'tabler:mail' }]}
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-white"></div>
+    </Fragment>
+  </CallToAction>
+
+  <FAQs id="faq" title={`${product.name}: your questions answered`} items={product.faqs} schema>
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-sky"></div>
+    </Fragment>
+  </FAQs>
+
+  {
+    relatedIndustries.length > 0 && (
+      <Features2
+        id="industries"
+        title="Popular with"
+        columns={4}
+        items={relatedIndustries.map((industry) => ({
+          title: industry.name,
+          description: industry.audience,
+          icon: industry.icon,
+          href: getPermalink(`/${industry.slug}`),
+        }))}
+      />
+    )
+  }
+
+  <Features2
+    id="other-finance"
+    title="Other ways we can help"
+    columns={4}
+    items={otherProducts.map((p) => ({
+      title: p.name,
+      description: p.summary,
+      icon: p.icon,
+      href: getPermalink(financeHref(p.slug)),
+    }))}
+  />
+
+  <CallToAction
+    title="Ready to lighten the load?"
+    subtitle="Tell us what you need and one of our brokers will be in touch within a few hours."
+    actions={[primaryAction, callAction]}
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-sky"></div>
+    </Fragment>
+  </CallToAction>
+</Layout>
